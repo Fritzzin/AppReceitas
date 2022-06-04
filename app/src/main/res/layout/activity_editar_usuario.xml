@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.EditarUsuario">
+
+    <TextView
+        android:id="@+id/atualizarUsuarioTvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/atualizarUsuario_tvLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.283"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/atualizarUsuarioEtLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/main_usuario_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioTvLogin" />
+
+    <TextView
+        android:id="@+id/atualizarUsuarioErroLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioEtLogin"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/atualizarUsuarioErroLogin2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioErroLogin"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/atualizarUsuarioSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/atualizarUsuario_tvSenha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioErroLogin2" />
+
+    <EditText
+        android:id="@+id/atualizarUsuarioEtSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/main_senha_hint"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioSenha" />
+
+    <TextView
+        android:id="@+id/atualizarUsuarioErroSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioEtSenha"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/atualizarUsuarioSenhaConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/atualizarUsuario_tvSenhaConfirmar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioErroSenha" />
+
+    <EditText
+        android:id="@+id/atualizarUsuarioEtSenhaConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/main_senha_hint"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioSenhaConfirmar" />
+
+    <Button
+        android:id="@+id/atualizarUsuarioBtnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/atualizarUsuario_btnVoltar"
+        app:layout_constraintEnd_toStartOf="@+id/atualizarUsuarioBtnAtualizar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioRadioGroup" />
+
+    <Button
+        android:id="@+id/atualizarUsuarioBtnAtualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/atualizarUsuario_btnAtualizar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/atualizarUsuarioBtnVoltar"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioRadioGroup" />
+
+    <TextView
+        android:id="@+id/atualizarUsuarioErroSenhaConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioEtSenhaConfirmar"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/atualizarUsuarioErroSenhaConfirmar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioErroSenhaConfirmar"
+        tools:visibility="invisible" />
+
+    <RadioGroup
+        android:id="@+id/atualizarUsuarioRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+        <RadioButton
+            android:id="@+id/atualizarUsuarioRadioAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/atualizarUsuario_radioAdmin" />
+
+        <RadioButton
+            android:id="@+id/atualizarUsuarioRadioUsuario"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:text="@string/atualizarUsuario_radioUsuario" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/atualizarUsuario_tvRadio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.322"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atualizarUsuarioErroSenhaConfirmar2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

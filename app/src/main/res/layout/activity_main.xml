@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="@string/main_usuario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.143" />
+
+    <EditText
+        android:id="@+id/editTextLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/main_usuario_hint"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/main_senha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvErroUsuario" />
+
+    <EditText
+        android:id="@+id/editTextSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/main_senha_hint"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="124dp"
+        android:backgroundTint="@color/dark_purple_500"
+        android:text="@string/main_loginButton"
+        app:layout_constraintStart_toEndOf="@+id/btnCadastro"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSenha" />
+
+    <Button
+        android:id="@+id/btnCadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="124dp"
+        android:backgroundTint="@color/dark_purple_800"
+        android:text="@string/main_cadastroButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSenha" />
+
+    <TextView
+        android:id="@+id/tvErroUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLogin"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvErroSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSenha"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvErroLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvErroSenha"
+        tools:visibility="invisible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

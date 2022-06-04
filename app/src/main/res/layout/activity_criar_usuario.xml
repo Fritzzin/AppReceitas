@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.CriarUsuario">
+
+    <TextView
+        android:id="@+id/cadastroErroSenhaConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroEtSenhaConfirmar"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/cadastroErroSenhaConfirmar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroErroSenhaConfirmar"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/cadastroTvSenhaConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/cadastro_textoSenhaConfirmar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroErroSenha" />
+
+    <EditText
+        android:id="@+id/cadastroEtLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/main_usuario_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroTvLogin" />
+
+    <TextView
+        android:id="@+id/cadastroTvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/cadastro_textoUsuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cadastroErroLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroEtLogin"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/cadastroErroLogin2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroErroLogin"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/cadastroTvSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/cadastro_textoSenha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroErroLogin2" />
+
+    <TextView
+        android:id="@+id/cadastroErroSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroEtSenha"
+        tools:visibility="invisible" />
+
+    <Button
+        android:id="@+id/cadastroButtonCadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/cadastro_btnCadastrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cadastroButtonVoltar"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroErroSenhaConfirmar" />
+
+    <Button
+        android:id="@+id/cadastroButtonVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/dark_purple_800"
+        android:text="@string/cadastro_btnVoltar"
+        app:layout_constraintEnd_toStartOf="@+id/cadastroButtonCadastrar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroErroSenhaConfirmar" />
+
+    <EditText
+        android:id="@+id/cadastroEtSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/main_senha_hint"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroTvSenha" />
+
+    <EditText
+        android:id="@+id/cadastroEtSenhaConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/main_senha_hint"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastroTvSenhaConfirmar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

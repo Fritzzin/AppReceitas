@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Receitas+</string>
+
+    <!--    Tela Principal-->
+    <string name="main_usuario">Usuário</string>
+    <string name="main_usuario_hint">Digite seu Login</string>
+    <string name="main_senha">Senha</string>
+    <string name="main_senha_hint">Digite sua Senha</string>
+    <string name="main_loginButton">Login</string>
+    <string name="main_cadastroButton">Cadastro</string>
+    <!--   Dashboard -->
+    <string name="dashboard_buscarNome">Buscar receitas por nome</string>
+    <string name="dashboard_buscarLista">Buscar receitas por lista</string>
+    <string name="dashboard_textoUsuario">Bem Vindo!</string>
+    <string name="dashboard_btnVoltar">Voltar</string>
+    <string name="dashboard_btnEditarUsuarios">Editar Usuários</string>
+    <!--    Tela Cadastro -->
+    <string name="cadastro_textoUsuario">Usuário</string>
+    <string name="cadastro_textoSenha">Senha</string>
+    <string name="cadastro_textoSenhaConfirmar">Repetir Senha</string>
+    <string name="cadastro_btnCadastrar">Cadastrar</string>
+    <string name="cadastro_btnVoltar">Voltar</string>
+    <string name="title_activity_listar_usuarios">ListarUsuarios</string>
+    <!--    Lista Usuarios-->
+    <string name="listaUsuarios_btnVoltar">Voltar</string>
+    <!--    Tela Atualizar Usuario-->
+    <string name="atualizarUsuario_btnVoltar">Voltar</string>
+    <string name="atualizarUsuario_btnAtualizar">Atualizar</string>
+    <string name="atualizarUsuario_tvLogin">Usuário</string>
+    <string name="atualizarUsuario_tvSenha">Senha</string>
+    <string name="atualizarUsuario_tvSenhaConfirmar">Repetir Senha</string>
+    <string name="atualizarUsuario_tvRadio">Tipo de Usuário</string>
+    <string name="atualizarUsuario_radioAdmin">Admin</string>
+    <string name="atualizarUsuario_radioUsuario">Usuário</string>
+</resources>
