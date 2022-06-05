@@ -36,7 +36,6 @@ public class ListarUsuarios extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 abrirEditarUsuario(alimentarLista().get(i).toString());
-                //                Toast.makeText(getApplicationContext(), "Usuário:" + alimentarLista().get(i).toString(), Toast.LENGTH_SHORT).show();
             }
         });
 

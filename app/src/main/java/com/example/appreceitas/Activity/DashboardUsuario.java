@@ -41,6 +41,13 @@ public class DashboardUsuario extends AppCompatActivity {
             }
         });
 
+        btnBuscarNome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirListaReceitas();
+            }
+        });
+
 
     }
 
@@ -55,6 +62,11 @@ public class DashboardUsuario extends AppCompatActivity {
 
     public void abrirListaUsuarios() {
         Intent myIntent = new Intent(this, ListarUsuarios.class);
+        this.startActivity(myIntent);
+    }
+
+    public void abrirListaReceitas() {
+        Intent myIntent = new Intent(this, ListarReceitasTodas.class);
         this.startActivity(myIntent);
     }
 

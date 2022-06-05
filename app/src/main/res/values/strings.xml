@@ -10,7 +10,7 @@
     <string name="main_cadastroButton">Cadastro</string>
     <!--   Dashboard -->
     <string name="dashboard_buscarNome">Buscar receitas por nome</string>
-    <string name="dashboard_buscarLista">Buscar receitas por lista</string>
+    <string name="dashboard_buscarLista">Buscar receitas por ingredientes</string>
     <string name="dashboard_textoUsuario">Bem Vindo!</string>
     <string name="dashboard_btnVoltar">Voltar</string>
     <string name="dashboard_btnEditarUsuarios">Editar Usuários</string>
@@ -21,8 +21,12 @@
     <string name="cadastro_btnCadastrar">Cadastrar</string>
     <string name="cadastro_btnVoltar">Voltar</string>
     <string name="title_activity_listar_usuarios">ListarUsuarios</string>
-    <!--    Lista Usuarios-->
+    <!--    Lista Usuarios -->
     <string name="listaUsuarios_btnVoltar">Voltar</string>
+    <!--    Lista Receitas -->
+    <string name="listaReceitas_btnVoltar">Voltar</string>
+    <string name="listaReceitas_etPesquisarHint">Digite aqui para pesquisar</string>
+    <string name="listaReceitas_btnPesquisar">Pesquisar</string>
     <!--    Tela Atualizar Usuario-->
     <string name="atualizarUsuario_btnVoltar">Voltar</string>
     <string name="atualizarUsuario_btnAtualizar">Atualizar</string>

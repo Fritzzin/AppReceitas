@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appreceitas.Apoio.BancoDados;
+import com.example.appreceitas.Class.Receita;
 import com.example.appreceitas.Class.Usuario;
+import com.example.appreceitas.DAO.ReceitaDAO;
 import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;
 
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         iniciarFindById();
         limparTexto();
+
+//        new ReceitaDAO(db).salvar(new Receita("Brigadeiro",2));
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
