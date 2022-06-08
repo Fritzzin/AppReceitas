@@ -48,6 +48,12 @@ public class DashboardUsuario extends AppCompatActivity {
             }
         });
 
+        btnBuscarLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirBuscarPorLista();
+            }
+        });
 
     }
 
@@ -58,6 +64,11 @@ public class DashboardUsuario extends AppCompatActivity {
         btnBuscarLista = (Button) findViewById(R.id.btnBuscarLista);
         btnVoltar = (Button) findViewById(R.id.btnVoltar);
         btnListarUsuarios = (Button) findViewById(R.id.btnEditarUsuarios);
+    }
+
+    public void abrirBuscarPorLista() {
+        Intent myIntent = new Intent(this, ListaDeIngredientes.class);
+        this.startActivity(myIntent);
     }
 
     public void abrirListaUsuarios() {

@@ -36,4 +36,12 @@
     <string name="atualizarUsuario_tvRadio">Tipo de Usuário</string>
     <string name="atualizarUsuario_radioAdmin">Admin</string>
     <string name="atualizarUsuario_radioUsuario">Usuário</string>
+    <!--    Lista Ingredientes-->
+    <string name="listaIngredientesBtnVoltar">Voltar</string>
+    <string name="listaIngredientesBtnAdicionar">Adicionar Ingrediente</string>
+    <string name="listaIngredientesBtnPesquisar">Pesquisar</string>
+    <!--    Lista Todos Ingredientes -->
+    <string name="listarTodosIngredientesBtnPesquisar">Pesquisar</string>
+    <string name="listarTodosIngredientesBtnVoltar">Voltar</string>
+    <string name="listarTodosIngredientesPesquisarHint">Digite aqui para pesquisar</string>
 </resources>
