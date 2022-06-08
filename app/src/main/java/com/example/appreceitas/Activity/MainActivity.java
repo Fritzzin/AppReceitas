@@ -17,6 +17,10 @@ import com.example.appreceitas.DAO.ReceitaDAO;
 import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,15 +37,14 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogin;
     private Button btnCadastroUsuario;
 
+    private static final Charset UTF_8 = StandardCharsets.UTF_8;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iniciarFindById();
         limparTexto();
-
-//        new ReceitaDAO(db).salvar(new Receita("Brigadeiro",2));
-
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,10 +66,11 @@ public class MainActivity extends AppCompatActivity {
     public void realizarLogin(){
         String login = textLogin.getText().toString();
         String senha = textSenha.getText().toString();
+        String senhaEncriptada = encriptarSenha(senha);
 
         Usuario usuarioBanco = new UsuarioDAO(db).buscarUsuario(login);
 
-        if (login.equals(usuarioBanco.getNome()) && senha.equals(usuarioBanco.getSenha())) {
+        if (login.equals(usuarioBanco.getNome()) && senhaEncriptada.equals(usuarioBanco.getSenha())) {
             Log.i("Teste Login", "Logado com sucesso!");
 
             tvErroLogin.setText("");
@@ -151,6 +155,31 @@ public class MainActivity extends AppCompatActivity {
     public void limparTexto(){
         textLogin.setText("");
         textSenha.setText("");
+    }
+
+    public static byte[] digest(byte[] input) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalArgumentException(e);
+        }
+        byte[] result = md.digest(input);
+        return result;
+    }
+
+    public static String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+//            sb.append(b);
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
+
+    public static String encriptarSenha(String senha){
+        byte[] shaInBytes = digest(senha.getBytes(UTF_8));
+        return bytesToHex(shaInBytes);
     }
 
 

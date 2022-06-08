@@ -16,7 +16,14 @@ import com.example.appreceitas.Class.Usuario;
 import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class EditarUsuario extends AppCompatActivity {
+
+    private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
     BancoDados db = new BancoDados(this);
 
@@ -102,9 +109,11 @@ public class EditarUsuario extends AppCompatActivity {
     public void realizarAtualizacao() {
         String login = textLogin.getText().toString();
         String senha = textSenha.getText().toString();
+        String senhaEncriptada = encriptarSenha(senha);
         Usuario usuario = new UsuarioDAO(db).buscarUsuario(loginAntigo);
+
         usuario.setNome(login);
-        usuario.setSenha(senha);
+        usuario.setSenha(senhaEncriptada);
 
         if(radioAdmin.isChecked()) {
             usuario.setTipo("Admin");
@@ -208,13 +217,38 @@ public class EditarUsuario extends AppCompatActivity {
 
         Usuario usuario = new UsuarioDAO(db).buscarUsuario(loginAntigo);
         textLogin.setText(usuario.getNome());
-        textSenha.setText(usuario.getSenha());
-        textSenhaConfirmar.setText(usuario.getSenha());
+//        textSenha.setText(usuario.getSenha());
+//        textSenhaConfirmar.setText(usuario.getSenha());
 
         if(usuario.getTipo().equals("Admin")) {
             radioGroup.check(radioAdmin.getId());
         } else {
             radioGroup.check(radioUsuario.getId());
         }
+    }
+
+    public static byte[] digest(byte[] input) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalArgumentException(e);
+        }
+        byte[] result = md.digest(input);
+        return result;
+    }
+
+    public static String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+//            sb.append(b);
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
+
+    public static String encriptarSenha(String senha){
+        byte[] shaInBytes = digest(senha.getBytes(UTF_8));
+        return bytesToHex(shaInBytes);
     }
 }
