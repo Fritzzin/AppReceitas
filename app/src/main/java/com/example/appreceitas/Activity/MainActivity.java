@@ -11,8 +11,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appreceitas.Apoio.BancoDados;
+import com.example.appreceitas.Class.Ingrediente;
 import com.example.appreceitas.Class.Receita;
 import com.example.appreceitas.Class.Usuario;
+import com.example.appreceitas.DAO.IngredienteDAO;
 import com.example.appreceitas.DAO.ReceitaDAO;
 import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;

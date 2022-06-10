@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.appreceitas.Apoio.BancoDados;
+import com.example.appreceitas.Class.Ingrediente;
+import com.example.appreceitas.DAO.IngredienteDAO;
 import com.example.appreceitas.R;
 
 import java.util.ArrayList;
@@ -33,12 +35,7 @@ public class ListarIngredientesTodos extends AppCompatActivity {
         setContentView(R.layout.activity_listar_ingredientes_todos);
         iniciarFindViewById();
 
-        ArrayList<String> lista = new ArrayList<String>();
-//        lista.add("Teste 1");
-//        lista.add("Teste 2");
-//        lista.add("Teste 3");
-//        lista.add("Teste 4");
-//        lista.add("Teste 5");
+        ArrayList<String> lista = alimentarLista();
         setArrayAdapter(lista);
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +58,17 @@ public class ListarIngredientesTodos extends AppCompatActivity {
         btnPesquisar = (Button) findViewById(R.id.listarTodosIngredientesBtnPesquisar);
         textoPesquisa = (EditText) findViewById(R.id.listarTodosIngredientesEtPesquisa);
         listaIngredientes = (ListView) findViewById(R.id.listarTodosIngredientesLista);
+    }
+
+    private ArrayList<String> alimentarLista(){
+        ArrayList<Ingrediente> listaIngredientes = new IngredienteDAO(this.db).listarTodos();
+        ArrayList<String> listaNomes = new ArrayList<String>();
+
+        for (int i = 0; i < listaIngredientes.size(); i++) {
+            listaNomes.add(listaIngredientes.get(i).getNome());
+        }
+
+        return listaNomes;
     }
 
     private void setArrayAdapter(ArrayList<String> lista) {
