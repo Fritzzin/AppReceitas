@@ -14,6 +14,11 @@ import com.example.appreceitas.Class.Usuario;
 import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class CriarUsuario extends AppCompatActivity {
 
     BancoDados db = new BancoDados(this);
@@ -30,6 +35,8 @@ public class CriarUsuario extends AppCompatActivity {
     private TextView erroSenhaConfirmar;
     private TextView erroUsuario2;
     private TextView erroSenhaConfirmar2;
+
+    private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +92,8 @@ public class CriarUsuario extends AppCompatActivity {
     public void realizarCadastro() {
         String login = textLogin.getText().toString();
         String senha = textSenha.getText().toString();
-        Usuario usuario = new Usuario(login, senha, "Usuário");
+        String senhaEncriptada = encriptarSenha(senha);
+        Usuario usuario = new Usuario(login, senhaEncriptada, "Usuário");
 
         UsuarioDAO dao = new UsuarioDAO(db);
         dao.salvar(usuario);
@@ -165,6 +173,31 @@ public class CriarUsuario extends AppCompatActivity {
         }
 
         return retorno;
+    }
+
+    public static String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+//            sb.append(b);
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
+
+    public static String encriptarSenha(String senha){
+        byte[] shaInBytes = digest(senha.getBytes(UTF_8));
+        return bytesToHex(shaInBytes);
+    }
+
+    public static byte[] digest(byte[] input) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalArgumentException(e);
+        }
+        byte[] result = md.digest(input);
+        return result;
     }
 
 }

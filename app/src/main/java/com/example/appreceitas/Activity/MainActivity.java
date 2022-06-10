@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         iniciarFindById();
         limparTexto();
 
+        new UsuarioDAO(db).excluir(7);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
