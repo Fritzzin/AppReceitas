@@ -2,22 +2,18 @@ package com.example.appreceitas.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Receita;
-import com.example.appreceitas.Class.Usuario;
 import com.example.appreceitas.DAO.ReceitaDAO;
-import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;
 
 import java.util.ArrayList;
@@ -26,7 +22,7 @@ public class ListarReceitasTodas extends AppCompatActivity {
 
     BancoDados db = new BancoDados(this);
 
-    ListView listaReceitas;
+    ListView listViewReceitas;
     EditText textoPesquisar;
     Button btnVoltar;
     Button btnPesquisar;
@@ -36,7 +32,10 @@ public class ListarReceitasTodas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_receitas_todas);
         iniciarFindViewById();
-        setArrayAdapter(alimentarLista());
+
+        ArrayList<Receita> listaReceitas = new ReceitaDAO(db).listarTodos();
+        ArrayList<String> listaNomes = alimentarLista();
+        setArrayAdapter(listaNomes);
 
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
@@ -53,11 +52,18 @@ public class ListarReceitasTodas extends AppCompatActivity {
             }
         });
 
+        listViewReceitas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                abrirReceita(listaReceitas.get(i));
+            }
+        });
+
 
     }
 
     private void iniciarFindViewById() {
-        listaReceitas = (ListView) findViewById(R.id.listaReceitas);
+        listViewReceitas = (ListView) findViewById(R.id.listaReceitas);
         btnVoltar = (Button) findViewById(R.id.listaReceitasBtnVoltar);
         btnPesquisar = (Button) findViewById(R.id.listaReceitasBtnPesquisar);
         textoPesquisar = (EditText) findViewById(R.id.listaReceitasEtPesquisar);
@@ -70,7 +76,7 @@ public class ListarReceitasTodas extends AppCompatActivity {
                 this,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                 lista);
-        listaReceitas.setAdapter(arrayAdapter);
+        listViewReceitas.setAdapter(arrayAdapter);
     }
 
 
@@ -84,9 +90,6 @@ public class ListarReceitasTodas extends AppCompatActivity {
 
         for (int i = 0; i < listaReceitas.size(); i++) {
             listaNomeReceitas.add(listaReceitas.get(i).getNome());
-            Log.i("teste", ""+listaReceitas.get(i).getId());
-            Log.i("teste", ""+listaReceitas.get(i).getNome());
-            Log.i("teste", ""+listaReceitas.get(i).getIdAutor());
         }
 
         return listaNomeReceitas;
@@ -106,5 +109,15 @@ public class ListarReceitasTodas extends AppCompatActivity {
 
             return listaNomeReceitas;
         }
+    }
+
+    public void abrirReceita(Receita receita){
+        Intent myIntent = new Intent(this, VisualizacaoReceita.class);
+
+        myIntent.putExtra("idReceita", receita.getId());
+        myIntent.putExtra("nomeReceita", receita.getNome());
+        myIntent.putExtra("autorReceita", receita.getIdAutor());
+
+        this.startActivity(myIntent);
     }
 }

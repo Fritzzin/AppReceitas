@@ -44,4 +44,8 @@
     <string name="listarTodosIngredientesBtnPesquisar">Pesquisar</string>
     <string name="listarTodosIngredientesBtnVoltar">Voltar</string>
     <string name="listarTodosIngredientesPesquisarHint">Digite aqui para pesquisar</string>
+    <!--    Tela Receita-->
+    <string name="ReceitaEtIngredientes">Ingredientes</string>
+    <string name="ReceitaBtnVoltar">Voltar</string>
+    <string name="ReceitaCheckBoxFavorito">Favoritar</string>
 </resources>

@@ -127,6 +127,31 @@ public class UsuarioDAO {
         return usuario;
     }
 
+    public Usuario buscarUsuarioId(int id) {
+        Usuario usuario = new Usuario();
+
+        SQLiteDatabase db = bd.getReadableDatabase();
+        String query = "SELECT * FROM " + TABELA +" " +
+                "WHERE id = '"+id+"';";
+
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        try{
+            do {
+                int codigo = cursor.getInt(0);
+                String nome = cursor.getString(1);
+                String senha = cursor.getString(2);
+                String tipo = cursor.getString(3);
+
+                usuario = new Usuario(codigo, nome, senha, tipo);
+            } while (cursor.moveToNext());
+        }catch (CursorIndexOutOfBoundsException c) {
+
+        }
+
+        return usuario;
+    }
+
     public boolean existeUsuario(String login) {
         boolean retorno = false;
 

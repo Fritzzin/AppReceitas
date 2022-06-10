@@ -112,4 +112,29 @@ public class ReceitaDAO {
         }
         return lista;
     }
+
+    public Receita buscarReceitaId(int id) {
+        Receita receita = new Receita();
+
+        SQLiteDatabase db = bd.getReadableDatabase();
+        String query = "SELECT * FROM " + TABELA +" " +
+                "WHERE id = '"+id+"';";
+
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        try{
+            do {
+                int codigo = cursor.getInt(0);
+                String nome = cursor.getString(1);
+                int idAutor = cursor.getInt(2);
+
+                receita.setId(id);
+                receita.setNome(nome);
+                receita.setIdAutor(idAutor);
+            } while (cursor.moveToNext());
+        }catch (CursorIndexOutOfBoundsException c) {
+
+        }
+        return receita;
+    }
 }

@@ -113,4 +113,33 @@ public class IngredienteDAO {
         }
         return lista;
     }
+
+    public ArrayList<Ingrediente> buscarIngredientesReceita(int idReceita) {
+        ArrayList<Ingrediente> lista = new ArrayList<>();
+
+        SQLiteDatabase db = bd.getReadableDatabase();
+        String query = "SELECT i.id, i.nome, i.tipo, ri.quantidade, ri.tipoQtd FROM Ingrediente i, Receita r, Receita_Ingrediente ri " +
+                "WHERE r.id = '"+idReceita+"'" +
+                "AND r.id = ri.idReceita " +
+                "AND i.id = ri.idIngrediente;";
+
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        try{
+            do {
+                int codigo = cursor.getInt(0);
+                String nome = cursor.getString(1);
+                String tipo = cursor.getString(2);
+                String quantidade = cursor.getString(3);
+                String tipoQtd = cursor.getString(4);
+
+                Ingrediente ingrediente = new Ingrediente(codigo, nome, tipo, quantidade, tipoQtd);
+                lista.add(ingrediente);
+            } while (cursor.moveToNext());
+        }catch (CursorIndexOutOfBoundsException c) {
+
+        }
+        return lista;
+    }
 }
+
