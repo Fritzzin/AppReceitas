@@ -12,8 +12,17 @@ public class Comentario {
 
     private int id;
     private int idUsuario;
+    private String nomeUsuario;
     private int idReceita;
     private String texto;
+
+    public Comentario(int id, int idUsuario, String nomeUsuario, int idReceita, String texto) {
+        this.id = id;
+        this.idUsuario = idUsuario;
+        this.nomeUsuario = nomeUsuario;
+        this.idReceita = idReceita;
+        this.texto = texto;
+    }
 
     public Comentario(int id, int idUsuario, int idReceita, String texto) {
         this.id = id;
@@ -33,6 +42,15 @@ public class Comentario {
         this.idUsuario = 0;
         this.idReceita = 0;
         this.texto = "";
+    }
+
+    public Comentario(int codigo, int idUsuario, int idReceita, String texto, String nomeUsuario) {
+        this.id = codigo;
+        this.idUsuario = idUsuario;
+        this.nomeUsuario = nomeUsuario;
+        this.idReceita = idReceita;
+        this.texto = texto;
+        this.nomeUsuario = nomeUsuario;
     }
 
     public int getId() {
@@ -67,4 +85,11 @@ public class Comentario {
         this.texto = texto;
     }
 
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
 }

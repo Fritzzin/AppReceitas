@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.Comentario">
+    tools:context=".Activity.VisualizarComentario">
 
     <TextView
         android:id="@+id/comentarioTitulo"
@@ -36,6 +36,7 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="@string/comentarioHintComentario"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/comentarioBtnVoltar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,5 +53,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toEndOf="@+id/comentarioBtnVoltar" />
+
+    <TextView
+        android:id="@+id/comentarioTvComentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/comentarioTvComentario"
+        app:layout_constraintBottom_toTopOf="@+id/comentarioEtComentario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/comentarioListaComentarios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/comentarioTvComentario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comentarioTitulo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,4 +53,7 @@
     <string name="ComentarioEtTitulo">Comentários</string>
     <string name="ComentarioBtnVoltar">Voltar</string>
     <string name="ComentarioBtnEnviar">Enviar</string>
+    <string name="comentarioTvComentario">Comentário</string>
+    <string name="comentarioHintComentario">Escreva aqui seu comentário!</string>
+
 </resources>

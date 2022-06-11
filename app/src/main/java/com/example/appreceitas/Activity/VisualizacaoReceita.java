@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -161,7 +160,7 @@ public class VisualizacaoReceita extends AppCompatActivity {
     }
 
     private void abrirComentarios() {
-        Intent myIntent = new Intent(this, Comentario.class);
+        Intent myIntent = new Intent(this, VisualizarComentario.class);
 
         myIntent.putExtra("idUsuario", idUsuario);
         myIntent.putExtra("idReceita", idReceita);
