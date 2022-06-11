@@ -20,6 +20,10 @@ public class DashboardUsuario extends AppCompatActivity {
     Button btnVoltar;
     Button btnListarUsuarios;
 
+    int idUsuario;
+    String nomeUsuario;
+    String tipoUsuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,32 +82,31 @@ public class DashboardUsuario extends AppCompatActivity {
 
     public void abrirListaReceitas() {
         Intent myIntent = new Intent(this, ListarReceitasTodas.class);
+
+        myIntent.putExtra("idUsuario", idUsuario);
+
         this.startActivity(myIntent);
     }
 
     public void setUsuario() {
-        int idUsuario = 0;
-        String nome = "";
-        String tipo = "";
-
         if (getIntent().hasExtra("idUsuario")) {
             Bundle extras = getIntent().getExtras();
-            idUsuario = extras.getInt("idUsuario");
-            nome = extras.getString("nome");
-            tipo = extras.getString("tipo");
+            this.idUsuario = extras.getInt("idUsuario");
+            this.nomeUsuario = extras.getString("nome");
+            this.tipoUsuario = extras.getString("tipo");
         }
 
-        tvNomeUsuario.append(" " + nome);
+        tvNomeUsuario.append(" " + nomeUsuario);
 
-        if (tipo.equals("Admin")) {
+        if (tipoUsuario.equals("Admin")) {
             tvTeste.setVisibility(View.VISIBLE);
         } else {
             tvTeste.setVisibility(View.INVISIBLE);
         }
 
         Log.i("Teste nova Activity", "" + idUsuario);
-        Log.i("Teste nova Activity", "" + nome);
-        Log.i("Teste nova Activity", "" + tipo);
+        Log.i("Teste nova Activity", "" + nomeUsuario);
+        Log.i("Teste nova Activity", "" + tipoUsuario);
     }
 
     public void retorno() {

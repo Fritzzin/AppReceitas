@@ -2,15 +2,15 @@ package com.example.appreceitas.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.drawable.Icon;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.appreceitas.Apoio.BancoDados;
@@ -33,14 +33,16 @@ public class VisualizacaoReceita extends AppCompatActivity {
     TextView textoAutor;
     TextView textoIngredientes;
     Button btnVoltar;
+    Button btnComentarios;
     ImageView imagem;
     ListView listaIngredientes;
     CheckBox checkBoxFavorito;
 
     int idReceita;
     int idAutor;
+    int idUsuario;
     String nomeReceita;
-    Usuario usuario;
+    Usuario autor;
     Receita receita;
 
     @Override
@@ -72,6 +74,13 @@ public class VisualizacaoReceita extends AppCompatActivity {
             }
         });
 
+        btnComentarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirComentarios();
+            }
+        });
+
     }
 
     private void iniciarFindViewById() {
@@ -79,12 +88,14 @@ public class VisualizacaoReceita extends AppCompatActivity {
         textoAutor = (TextView) findViewById(R.id.receitaEtAutor);
         textoIngredientes = (TextView) findViewById(R.id.receitaEtIngredientes);
         btnVoltar = (Button) findViewById(R.id.receitaBtnVoltar);
+        btnComentarios = (Button) findViewById(R.id.receitaBtnComentarios);
         imagem = (ImageView) findViewById(R.id.receitaImage);
         listaIngredientes = (ListView) findViewById(R.id.receitaListaIngredientes);
         checkBoxFavorito = (CheckBox) findViewById(R.id.receitaCheckBoxFavorito);
 
         textoTitulo.setText(receita.getNome());
-        textoAutor.setText(usuario.getNome());
+        textoAutor.setText(autor.getNome());
+        checkBoxFavorito.setChecked(false);
 
     }
 
@@ -120,14 +131,15 @@ public class VisualizacaoReceita extends AppCompatActivity {
             idReceita = extras.getInt("idReceita");
             nomeReceita = extras.getString("nomeReceita");
             idAutor = extras.getInt("autorReceita");
+            idUsuario = extras.getInt("idUsuario");
         }
 
-        this.usuario = new UsuarioDAO(db).buscarUsuarioId(this.idAutor);
+        this.autor = new UsuarioDAO(db).buscarUsuarioId(this.idAutor);
         this.receita = new ReceitaDAO(db).buscarReceitaId(this.idReceita);
     }
 
     private void setReceitaFavorita(){
-        boolean favorita = new ReceitaFavoritaDAO(db).isFavorite(this.idAutor, this.idReceita);
+        boolean favorita = new ReceitaFavoritaDAO(db).isFavorite(this.idUsuario, this.idReceita);
 
         if(favorita) {
             checkBoxFavorito.setChecked(true);
@@ -137,16 +149,23 @@ public class VisualizacaoReceita extends AppCompatActivity {
     }
 
     private void removerFavorito(){
-        new ReceitaFavoritaDAO(db).modificarFavorito(idAutor, idReceita, "FALSE");
+        new ReceitaFavoritaDAO(db).removerFavorito(this.idUsuario, this.idReceita);
     }
 
     private void tornarFavorito() {
-        new ReceitaFavoritaDAO(db).modificarFavorito(idAutor, idReceita, "TRUE");
+        new ReceitaFavoritaDAO(db).adicionarFavorito(this.idUsuario, this.idReceita);
     }
-
-
 
     private void voltar() {
         this.finish();
+    }
+
+    private void abrirComentarios() {
+        Intent myIntent = new Intent(this, Comentario.class);
+
+        myIntent.putExtra("idUsuario", idUsuario);
+        myIntent.putExtra("idReceita", idReceita);
+
+        this.startActivity(myIntent);
     }
 }

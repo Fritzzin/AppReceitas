@@ -26,6 +26,7 @@ public class ListarReceitasTodas extends AppCompatActivity {
     EditText textoPesquisar;
     Button btnVoltar;
     Button btnPesquisar;
+    int idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,11 @@ public class ListarReceitasTodas extends AppCompatActivity {
         ArrayList<Receita> listaReceitas = new ReceitaDAO(db).listarTodos();
         ArrayList<String> listaNomes = alimentarLista();
         setArrayAdapter(listaNomes);
+
+        if (getIntent().hasExtra("idUsuario")) {
+            Bundle extras = getIntent().getExtras();
+            idUsuario = extras.getInt("idUsuario");
+        }
 
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +123,8 @@ public class ListarReceitasTodas extends AppCompatActivity {
         myIntent.putExtra("idReceita", receita.getId());
         myIntent.putExtra("nomeReceita", receita.getNome());
         myIntent.putExtra("autorReceita", receita.getIdAutor());
+        myIntent.putExtra("idUsuario", idUsuario);
+
 
         this.startActivity(myIntent);
     }

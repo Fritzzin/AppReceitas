@@ -48,4 +48,9 @@
     <string name="ReceitaEtIngredientes">Ingredientes</string>
     <string name="ReceitaBtnVoltar">Voltar</string>
     <string name="ReceitaCheckBoxFavorito">Favoritar</string>
+    <string name="ReceitaBtnComentarios">Comentários</string>
+<!--    Tela Comentarios-->
+    <string name="ComentarioEtTitulo">Comentários</string>
+    <string name="ComentarioBtnVoltar">Voltar</string>
+    <string name="ComentarioBtnEnviar">Enviar</string>
 </resources>

@@ -16,6 +16,7 @@ import com.example.appreceitas.Class.Receita;
 import com.example.appreceitas.Class.Usuario;
 import com.example.appreceitas.DAO.IngredienteDAO;
 import com.example.appreceitas.DAO.ReceitaDAO;
+import com.example.appreceitas.DAO.ReceitaFavoritaDAO;
 import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;
 
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         iniciarFindById();
         limparTexto();
 
-        new UsuarioDAO(db).excluir(7);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
