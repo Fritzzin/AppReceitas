@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.appreceitas.Apoio.BancoDados;
+import com.example.appreceitas.Class.Ingrediente;
 import com.example.appreceitas.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -34,6 +35,7 @@ public class ListaDeIngredientes extends AppCompatActivity {
     FloatingActionButton btnAdicionar;
     ListView listaIngredientes;
     ArrayList<String> lista = new ArrayList<String>();
+    ArrayList<Ingrediente> listaId = new ArrayList<Ingrediente>();
 
 
     ActivityResultLauncher<Intent> activityLauncher = registerForActivityResult(
@@ -41,15 +43,14 @@ public class ListaDeIngredientes extends AppCompatActivity {
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    Log.i("teste", "onActivityResult:");
-
                     if (result.getResultCode() == 78) {
                         Intent intent = result.getData();
 
                         if (intent != null) {
 //                            Extract data
                             String nome = intent.getStringExtra("nome");
-                            adicionarLista(nome);
+                            String id = intent.getStringExtra("idIngrediente");
+                            adicionarLista(nome, Integer.parseInt(id));
                         }
                     }
                 }
@@ -62,13 +63,11 @@ public class ListaDeIngredientes extends AppCompatActivity {
         setContentView(R.layout.activity_lista_de_ingredientes);
         iniciarFindViewById();
 
-//        adicionarLista("Teste1");
 
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 abrirListaIngredientes();
-//                Log.i("teste", "TESTE BOTAO ADICIONAR");
             }
         });
 
@@ -76,6 +75,13 @@ public class ListaDeIngredientes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 voltar();
+            }
+        });
+
+        btnPesquisar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirPesquisaReceitas();
             }
         });
     }
@@ -107,8 +113,27 @@ public class ListaDeIngredientes extends AppCompatActivity {
 //        this.startActivity(myIntent);
     }
 
-    public void adicionarLista(String nome) {
-        this.lista.add(nome);
+    public void adicionarLista(String nome, int id) {
+        Ingrediente ingrediente = new Ingrediente(id, nome);
+
+        boolean duplicado = false;
+
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).equals(nome)){
+                duplicado = true;
+            }
+        }
+
+        if(!duplicado){
+            this.lista.add(nome);
+            this.listaId.add(ingrediente);
+        }
         setArrayAdapter(lista);
+    }
+
+    public void abrirPesquisaReceitas() {
+        for (int i = 0; i < listaId.size(); i++) {
+            Log.i("teste", "ID: " + listaId.get(i).getId() + "      NOME: " + listaId.get(i).getNome());
+        }
     }
 }

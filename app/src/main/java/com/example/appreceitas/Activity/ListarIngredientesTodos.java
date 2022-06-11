@@ -26,8 +26,9 @@ public class ListarIngredientesTodos extends AppCompatActivity {
     Button btnVoltar;
     Button btnPesquisar;
     EditText textoPesquisa;
-    ListView listaIngredientes;
+    ListView listViewIngredientes;
 
+    ArrayList<Ingrediente> listaIngredientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +46,10 @@ public class ListarIngredientesTodos extends AppCompatActivity {
             }
         });
 
-        listaIngredientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewIngredientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                adicionarItem(lista.get(i).toString());
+                adicionarItem(lista.get(i).toString(), i);
             }
         });
     }
@@ -57,11 +58,11 @@ public class ListarIngredientesTodos extends AppCompatActivity {
         btnVoltar = (Button) findViewById(R.id.listarTodosIngredientesBtnVoltar);
         btnPesquisar = (Button) findViewById(R.id.listarTodosIngredientesBtnPesquisar);
         textoPesquisa = (EditText) findViewById(R.id.listarTodosIngredientesEtPesquisa);
-        listaIngredientes = (ListView) findViewById(R.id.listarTodosIngredientesLista);
+        listViewIngredientes = (ListView) findViewById(R.id.listarTodosIngredientesLista);
     }
 
     private ArrayList<String> alimentarLista(){
-        ArrayList<Ingrediente> listaIngredientes = new IngredienteDAO(this.db).listarTodos();
+        listaIngredientes = new IngredienteDAO(this.db).listarTodos();
         ArrayList<String> listaNomes = new ArrayList<String>();
 
         for (int i = 0; i < listaIngredientes.size(); i++) {
@@ -78,18 +79,22 @@ public class ListarIngredientesTodos extends AppCompatActivity {
                 this,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                 lista);
-        listaIngredientes.setAdapter(arrayAdapter);
+        listViewIngredientes.setAdapter(arrayAdapter);
     }
 
     private void voltar(){
         this.finish();
     }
 
-    private void adicionarItem(String nome){
-        Log.i("teste", nome);
+    private void adicionarItem(String nome, int i){
         Intent intent = new Intent();
+        String id = String.valueOf(listaIngredientes.get(i).getId());
+
         intent.putExtra("nome", nome);
+        intent.putExtra("idIngrediente", id);
+
         setResult(78, intent);
+
         voltar();
     }
 }

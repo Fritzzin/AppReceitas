@@ -24,6 +24,11 @@ public class Ingrediente {
         this.tipoQtd = "";
     }
 
+    public Ingrediente(int id, String nome){
+        this.id = id;
+        this.nome = nome;
+    }
+
     public Ingrediente(String nome, String tipo) {
         this.nome = nome;
         this.tipo = tipo;
