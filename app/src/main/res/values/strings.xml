@@ -54,11 +54,13 @@
     <string name="ReceitaBtnVoltar">Voltar</string>
     <string name="ReceitaCheckBoxFavorito">Favoritar</string>
     <string name="ReceitaBtnComentarios">Comentários</string>
-<!--    Tela Comentarios-->
+    <!--    Tela Comentarios-->
     <string name="ComentarioEtTitulo">Comentários</string>
     <string name="ComentarioBtnVoltar">Voltar</string>
     <string name="ComentarioBtnEnviar">Enviar</string>
     <string name="comentarioTvComentario">Comentário</string>
     <string name="comentarioHintComentario">Escreva aqui seu comentário!</string>
-
+    <!--    Resultado Pesquisa -->
+    <string name="resultadoPesquisaTvTitulo">Resultado</string>
+    <string name="resultadoPesquisaBtnVoltar">Voltar</string>
 </resources>

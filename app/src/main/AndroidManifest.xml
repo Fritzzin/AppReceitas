@@ -14,6 +14,9 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".Activity.ResultadoPesquisa"
+            android:exported="false" />
+        <activity
             android:name=".Activity.VisualizarComentario"
             android:exported="false" />
         <activity

@@ -132,6 +132,9 @@ public class ListaDeIngredientes extends AppCompatActivity {
     }
 
     public void abrirPesquisaReceitas() {
+        Intent myIntent = new Intent(this, ResultadoPesquisa.class);
+        this.startActivity(myIntent);
+
         for (int i = 0; i < listaId.size(); i++) {
             Log.i("teste", "ID: " + listaId.get(i).getId() + "      NOME: " + listaId.get(i).getNome());
         }
