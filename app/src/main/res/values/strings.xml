@@ -15,6 +15,7 @@
     <string name="dashboard_btnVoltar">Voltar</string>
     <string name="dashboard_btnEditarUsuarios">Editar Usuários</string>
     <!--    Tela Cadastro -->
+    <string name="cadastro_textoTitulo">Criação de Usuário</string>
     <string name="cadastro_textoUsuario">Usuário</string>
     <string name="cadastro_textoSenha">Senha</string>
     <string name="cadastro_textoSenhaConfirmar">Repetir Senha</string>
@@ -23,11 +24,14 @@
     <string name="title_activity_listar_usuarios">ListarUsuarios</string>
     <!--    Lista Usuarios -->
     <string name="listaUsuarios_btnVoltar">Voltar</string>
+    <string name="listaUsuarios_tvTitulo">Usuários</string>
     <!--    Lista Receitas -->
     <string name="listaReceitas_btnVoltar">Voltar</string>
     <string name="listaReceitas_etPesquisarHint">Digite aqui para pesquisar</string>
     <string name="listaReceitas_btnPesquisar">Pesquisar</string>
+    <string name="listaReceitas_tvTitulo">Receitas</string>
     <!--    Tela Atualizar Usuario-->
+    <string name="atualizarUsuario_tvTitulo">Atualizar Usuário</string>
     <string name="atualizarUsuario_btnVoltar">Voltar</string>
     <string name="atualizarUsuario_btnAtualizar">Atualizar</string>
     <string name="atualizarUsuario_tvLogin">Usuário</string>
@@ -40,6 +44,7 @@
     <string name="listaIngredientesBtnVoltar">Voltar</string>
     <string name="listaIngredientesBtnAdicionar">Adicionar Ingrediente</string>
     <string name="listaIngredientesBtnPesquisar">Pesquisar</string>
+    <string name="listaIngredientesTvTitulo">Lista de Ingredientes</string>
     <!--    Lista Todos Ingredientes -->
     <string name="listarTodosIngredientesBtnPesquisar">Pesquisar</string>
     <string name="listarTodosIngredientesBtnVoltar">Voltar</string>
