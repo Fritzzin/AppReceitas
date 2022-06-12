@@ -45,6 +45,7 @@
     <string name="listaIngredientesBtnAdicionar">Adicionar Ingrediente</string>
     <string name="listaIngredientesBtnPesquisar">Pesquisar</string>
     <string name="listaIngredientesTvTitulo">Lista de Ingredientes</string>
+    <string name="listaIngredientesTvErro">ERRO</string>
     <!--    Lista Todos Ingredientes -->
     <string name="listarTodosIngredientesBtnPesquisar">Pesquisar</string>
     <string name="listarTodosIngredientesBtnVoltar">Voltar</string>

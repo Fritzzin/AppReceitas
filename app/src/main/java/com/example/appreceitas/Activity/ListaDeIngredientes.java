@@ -15,9 +15,11 @@ import android.os.Parcelable;
 import android.service.controls.actions.FloatAction;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Ingrediente;
@@ -34,8 +36,10 @@ public class ListaDeIngredientes extends AppCompatActivity {
     Button btnPesquisar;
     FloatingActionButton btnAdicionar;
     ListView listaIngredientes;
+    TextView textoErro;
     ArrayList<String> lista = new ArrayList<String>();
     ArrayList<Ingrediente> listaId = new ArrayList<Ingrediente>();
+    int idUsuario;
 
 
     ActivityResultLauncher<Intent> activityLauncher = registerForActivityResult(
@@ -45,6 +49,9 @@ public class ListaDeIngredientes extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == 78) {
                         Intent intent = result.getData();
+
+                        textoErro.setVisibility(View.INVISIBLE);
+                        textoErro.setText("");
 
                         if (intent != null) {
 //                            Extract data
@@ -62,6 +69,11 @@ public class ListaDeIngredientes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_de_ingredientes);
         iniciarFindViewById();
+
+        if (getIntent().hasExtra("idUsuario")) {
+            Bundle extras = getIntent().getExtras();
+            idUsuario = extras.getInt("idUsuario");
+        }
 
 
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +96,17 @@ public class ListaDeIngredientes extends AppCompatActivity {
                 abrirPesquisaReceitas();
             }
         });
+
+        listaIngredientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                listaId.remove(i);
+                lista.remove(i);
+
+                setArrayAdapter(lista);
+            }
+        });
     }
 
     public void iniciarFindViewById() {
@@ -91,6 +114,9 @@ public class ListaDeIngredientes extends AppCompatActivity {
         btnPesquisar = (Button) findViewById(R.id.listaIngredientesBtnPesquisar);
         btnAdicionar = (FloatingActionButton) findViewById(R.id.listaIngredientesBtnAdd);
         listaIngredientes = (ListView) findViewById(R.id.listaIngredientesLista);
+        textoErro = (TextView) findViewById(R.id.listaIngredientesTvErro);
+        textoErro.setText("");
+        textoErro.setVisibility(View.INVISIBLE);
     }
 
     public void voltar() {
@@ -119,12 +145,12 @@ public class ListaDeIngredientes extends AppCompatActivity {
         boolean duplicado = false;
 
         for (int i = 0; i < lista.size(); i++) {
-            if(lista.get(i).equals(nome)){
+            if (lista.get(i).equals(nome)) {
                 duplicado = true;
             }
         }
 
-        if(!duplicado){
+        if (!duplicado) {
             this.lista.add(nome);
             this.listaId.add(ingrediente);
         }
@@ -132,11 +158,26 @@ public class ListaDeIngredientes extends AppCompatActivity {
     }
 
     public void abrirPesquisaReceitas() {
-        Intent myIntent = new Intent(this, ResultadoPesquisa.class);
-        this.startActivity(myIntent);
+        if (lista.size() == 0 || lista == null) {
+            textoErro.setVisibility(View.VISIBLE);
+            textoErro.setText("Adicione pelo menos um item na lista!");
+        } else {
+            textoErro.setVisibility(View.INVISIBLE);
+            textoErro.setText("");
 
-        for (int i = 0; i < listaId.size(); i++) {
-            Log.i("teste", "ID: " + listaId.get(i).getId() + "      NOME: " + listaId.get(i).getNome());
+            Intent myIntent = new Intent(this, ResultadoPesquisa.class);
+            myIntent.putExtra("idUsuario", idUsuario);
+
+            for (int i = 0; i < lista.size(); i++) {
+                String tag = "ingrediente" + i;
+                myIntent.putExtra(tag, lista.get(i));
+            }
+            myIntent.putExtra("qtd", lista.size());
+            this.startActivity(myIntent);
+
+            for (int i = 0; i < listaId.size(); i++) {
+                Log.i("teste", "ID: " + listaId.get(i).getId() + "      NOME: " + listaId.get(i).getNome());
+            }
         }
     }
 }

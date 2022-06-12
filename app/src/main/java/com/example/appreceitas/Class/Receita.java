@@ -35,6 +35,11 @@ public class Receita {
         this.idAutor = idUsuario;
     }
 
+    public Receita(int id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     public Receita() {
         this.id = 0;
         this.nome = "";

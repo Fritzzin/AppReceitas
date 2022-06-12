@@ -72,6 +72,7 @@ public class DashboardUsuario extends AppCompatActivity {
 
     public void abrirBuscarPorLista() {
         Intent myIntent = new Intent(this, ListaDeIngredientes.class);
+        myIntent.putExtra("idUsuario", idUsuario);
         this.startActivity(myIntent);
     }
 
@@ -104,9 +105,9 @@ public class DashboardUsuario extends AppCompatActivity {
             tvTeste.setVisibility(View.INVISIBLE);
         }
 
-        Log.i("Teste nova Activity", "" + idUsuario);
-        Log.i("Teste nova Activity", "" + nomeUsuario);
-        Log.i("Teste nova Activity", "" + tipoUsuario);
+//        Log.i("Teste nova Activity", "" + idUsuario);
+//        Log.i("Teste nova Activity", "" + nomeUsuario);
+//        Log.i("Teste nova Activity", "" + tipoUsuario);
     }
 
     public void retorno() {

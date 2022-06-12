@@ -17,6 +17,7 @@ import com.example.appreceitas.Class.Usuario;
 import com.example.appreceitas.DAO.IngredienteDAO;
 import com.example.appreceitas.DAO.ReceitaDAO;
 import com.example.appreceitas.DAO.ReceitaFavoritaDAO;
+import com.example.appreceitas.DAO.ReceitaIngredienteDAO;
 import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         iniciarFindById();
         limparTexto();
 
+//        new ReceitaIngredienteDAO(db).salvar(2, 1, "2", "unidades");
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,14 +77,14 @@ public class MainActivity extends AppCompatActivity {
         Usuario usuarioBanco = new UsuarioDAO(db).buscarUsuario(login);
 
         if (login.equals(usuarioBanco.getNome()) && senhaEncriptada.equals(usuarioBanco.getSenha())) {
-            Log.i("Teste Login", "Logado com sucesso!");
+//            Log.i("Teste Login", "Logado com sucesso!");
 
             tvErroLogin.setText("");
             tvErroLogin.setVisibility(View.INVISIBLE);
 
             abrirDashboard(usuarioBanco);
         } else {
-            Log.i("Teste Login", "Erro ao executar login!");
+//            Log.i("Teste Login", "Erro ao executar login!");
 
             tvErroLogin.setText("Erro ao realizar login! Verifique o usuário e senha.");
             tvErroLogin.setVisibility(View.VISIBLE);
@@ -175,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
     public static String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
-//            sb.append(b);
             sb.append(String.format("%02x", b));
         }
         return sb.toString();
@@ -185,50 +186,4 @@ public class MainActivity extends AppCompatActivity {
         byte[] shaInBytes = digest(senha.getBytes(UTF_8));
         return bytesToHex(shaInBytes);
     }
-
-
-    // Desenvolvimento
-
-//    public void inserirUsuario(){
-//        Usuario usuario = new Usuario("Teste2", "1234555", "Admin");
-//        boolean retorno = new UsuarioDAO(db).salvar(usuario);
-//        if (retorno) {
-//            Log.i("Teste Save", "Salvou!");
-//        } else {
-//            Log.i("Teste Save", "Deu Ruim!");
-//        }
-//    }
-//
-//    public void atualizarUsuario() {
-//                Usuario usuario = new Usuario("Augusto", "SenhaTeste", "Admin");
-//        boolean retorno = new UsuarioDAO(db).atualizar(usuario, 1);
-//        if (retorno) {
-//            Log.i("Teste Atualizar", "Atualizou!");
-//        } else {
-//            Log.i("Teste Atualizar", "Deu Ruim!");
-//        }
-//    }
-//
-//    public void excluirUsuario() {
-//                boolean retorno = new UsuarioDAO(db).excluir(2);
-//        if (retorno) {
-//            Log.i("Teste Exclusao", "Excluiu!");
-//        } else {
-//            Log.i("Teste Exclusao", "Deu Ruim!");
-//        }
-//    }
-//
-//    public void buscarTodosUsuarios() {
-//        UsuarioDAO dao = new UsuarioDAO(db);
-//        ArrayList<Usuario> lista = dao.listarTodos();
-//
-//        for (int i = 0; i < lista.size(); i++) {
-//            int id = lista.get(i).getId();
-//            String nome = lista.get(i).getNome();
-//            String senha = lista.get(i).getSenha();
-//            String tipo = lista.get(i).getTipo();
-//
-//            Log.i("ARRAY", id + " " + nome + " " + senha + " " + tipo);
-//        }
-//    }
 }
