@@ -1,7 +1,6 @@
 package com.example.appreceitas.Class;
 
 /**
- *
  * @author Fritzzin
  */
 public class Usuario {

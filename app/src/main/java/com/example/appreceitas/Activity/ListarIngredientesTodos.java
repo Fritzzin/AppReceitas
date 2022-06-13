@@ -1,16 +1,15 @@
 package com.example.appreceitas.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Ingrediente;
@@ -54,14 +53,14 @@ public class ListarIngredientesTodos extends AppCompatActivity {
         });
     }
 
-    private void iniciarFindViewById(){
+    private void iniciarFindViewById() {
         btnVoltar = (Button) findViewById(R.id.listarTodosIngredientesBtnVoltar);
         btnPesquisar = (Button) findViewById(R.id.listarTodosIngredientesBtnPesquisar);
         textoPesquisa = (EditText) findViewById(R.id.listarTodosIngredientesEtPesquisa);
         listViewIngredientes = (ListView) findViewById(R.id.listarTodosIngredientesLista);
     }
 
-    private ArrayList<String> alimentarLista(){
+    private ArrayList<String> alimentarLista() {
         listaIngredientes = new IngredienteDAO(this.db).listarTodos();
         ArrayList<String> listaNomes = new ArrayList<String>();
 
@@ -82,11 +81,11 @@ public class ListarIngredientesTodos extends AppCompatActivity {
         listViewIngredientes.setAdapter(arrayAdapter);
     }
 
-    private void voltar(){
+    private void voltar() {
         this.finish();
     }
 
-    private void adicionarItem(String nome, int i){
+    private void adicionarItem(String nome, int i) {
         Intent intent = new Intent();
         String id = String.valueOf(listaIngredientes.get(i).getId());
 

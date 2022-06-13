@@ -1,7 +1,5 @@
 package com.example.appreceitas.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Usuario;
@@ -78,7 +77,7 @@ public class ListarUsuarios extends AppCompatActivity {
         this.finish();
     }
 
-    private void abrirEditarUsuario(String loginUsuario){
+    private void abrirEditarUsuario(String loginUsuario) {
         Intent myIntent = new Intent(this, EditarUsuario.class);
 
         myIntent.putExtra("loginUsuario", loginUsuario);

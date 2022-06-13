@@ -93,12 +93,12 @@ public class ReceitaDAO {
         ArrayList<Receita> lista = new ArrayList<>();
 
         SQLiteDatabase db = bd.getReadableDatabase();
-        String query = "SELECT * FROM " + TABELA +" " +
-                "WHERE nome LIKE '%"+nomeReceita+"%';";
+        String query = "SELECT * FROM " + TABELA + " " +
+                "WHERE nome LIKE '%" + nomeReceita + "%';";
 
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        try{
+        try {
             do {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
@@ -107,7 +107,7 @@ public class ReceitaDAO {
                 Receita receita = new Receita(codigo, nome, idAutor);
                 lista.add(receita);
             } while (cursor.moveToNext());
-        }catch (CursorIndexOutOfBoundsException c) {
+        } catch (CursorIndexOutOfBoundsException c) {
 
         }
         return lista;
@@ -117,12 +117,12 @@ public class ReceitaDAO {
         Receita receita = new Receita();
 
         SQLiteDatabase db = bd.getReadableDatabase();
-        String query = "SELECT * FROM " + TABELA +" " +
-                "WHERE id = '"+id+"';";
+        String query = "SELECT * FROM " + TABELA + " " +
+                "WHERE id = '" + id + "';";
 
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        try{
+        try {
             do {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
@@ -132,9 +132,39 @@ public class ReceitaDAO {
                 receita.setNome(nome);
                 receita.setIdAutor(idAutor);
             } while (cursor.moveToNext());
-        }catch (CursorIndexOutOfBoundsException c) {
+        } catch (CursorIndexOutOfBoundsException c) {
 
         }
         return receita;
+    }
+
+    public ArrayList<Receita> buscarFavoritos(int idUsuario) {
+        ArrayList<Receita> lista = new ArrayList<Receita>();
+
+        SQLiteDatabase db = bd.getReadableDatabase();
+        String query = "SELECT r.id, r.nome, r.idAutor " +
+                "FROM Receita r, Receita_Favorita rf " +
+                "WHERE r.id = rf.idReceita " +
+                "AND rf.idUsuario = " + idUsuario;
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        try {
+            do {
+                int codigo = cursor.getInt(0);
+                String nome = cursor.getString(1);
+                int codigoAutor = cursor.getInt(2);
+
+                Receita receita = new Receita();
+                receita.setId(codigo);
+                receita.setNome(nome);
+                receita.setIdAutor(codigoAutor);
+
+                lista.add(receita);
+            } while (cursor.moveToNext());
+        } catch (CursorIndexOutOfBoundsException c) {
+
+        }
+        return lista;
+
     }
 }

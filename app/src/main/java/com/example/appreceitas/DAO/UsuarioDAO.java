@@ -8,10 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Usuario;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Statement;
-import java.sql.ResultSet;
 
 /**
  * @author Fritzzin
@@ -106,12 +103,12 @@ public class UsuarioDAO {
         Usuario usuario = new Usuario();
 
         SQLiteDatabase db = bd.getReadableDatabase();
-        String query = "SELECT * FROM " + TABELA +" " +
-                "WHERE nome = '"+login+"';";
+        String query = "SELECT * FROM " + TABELA + " " +
+                "WHERE nome = '" + login + "';";
 
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        try{
+        try {
             do {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
@@ -120,7 +117,7 @@ public class UsuarioDAO {
 
                 usuario = new Usuario(codigo, nome, senha, tipo);
             } while (cursor.moveToNext());
-        }catch (CursorIndexOutOfBoundsException c) {
+        } catch (CursorIndexOutOfBoundsException c) {
 
         }
 
@@ -131,12 +128,12 @@ public class UsuarioDAO {
         Usuario usuario = new Usuario();
 
         SQLiteDatabase db = bd.getReadableDatabase();
-        String query = "SELECT * FROM " + TABELA +" " +
-                "WHERE id = '"+id+"';";
+        String query = "SELECT * FROM " + TABELA + " " +
+                "WHERE id = '" + id + "';";
 
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        try{
+        try {
             do {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
@@ -145,7 +142,7 @@ public class UsuarioDAO {
 
                 usuario = new Usuario(codigo, nome, senha, tipo);
             } while (cursor.moveToNext());
-        }catch (CursorIndexOutOfBoundsException c) {
+        } catch (CursorIndexOutOfBoundsException c) {
 
         }
 
@@ -156,12 +153,12 @@ public class UsuarioDAO {
         boolean retorno = false;
 
         SQLiteDatabase db = bd.getReadableDatabase();
-        String query = "SELECT * FROM " + TABELA +" " +
-                "WHERE nome = '"+login+"';";
+        String query = "SELECT * FROM " + TABELA + " " +
+                "WHERE nome = '" + login + "';";
 
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        try{
+        try {
             do {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
@@ -170,7 +167,7 @@ public class UsuarioDAO {
                 retorno = true;
 
             } while (cursor.moveToNext());
-        }catch (CursorIndexOutOfBoundsException c) {
+        } catch (CursorIndexOutOfBoundsException c) {
 
         }
 

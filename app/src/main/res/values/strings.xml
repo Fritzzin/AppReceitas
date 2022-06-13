@@ -13,7 +13,9 @@
     <string name="dashboard_buscarLista">Buscar receitas por ingredientes</string>
     <string name="dashboard_textoUsuario">Bem Vindo!</string>
     <string name="dashboard_btnVoltar">Voltar</string>
-    <string name="dashboard_btnEditarUsuarios">Editar Usuários</string>
+    <string name="dashboard_btnEditarUsuarios">Painel Administrativo</string>
+    <string name="dashboard_btnFavoritos">Receitas Favoritas</string>
+
     <!--    Tela Cadastro -->
     <string name="cadastro_textoTitulo">Criação de Usuário</string>
     <string name="cadastro_textoUsuario">Usuário</string>
@@ -64,4 +66,11 @@
     <!--    Resultado Pesquisa -->
     <string name="resultadoPesquisaTvTitulo">Resultado</string>
     <string name="resultadoPesquisaBtnVoltar">Voltar</string>
+    <!--    Lista Favoritos-->
+    <string name="listaFavoritoBtnVoltar">Voltar</string>
+    <string name="listaFavoritoTvTitulo">Favoritos</string>
+    <!--    Painel Admin-->
+    <string name="painelAdminTvTitulo">Painel Administrativo</string>
+    <string name="painelAdminBtnVoltar">Voltar</string>
+    <string name="painelAdminBtnEditarUsuarios">Editar Usuários</string>
 </resources>

@@ -6,9 +6,6 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.appreceitas.Apoio.BancoDados;
-import com.example.appreceitas.Class.Receita;
-
-import java.util.ArrayList;
 
 public class ReceitaFavoritaDAO {
     BancoDados bd;

@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Comentario;
-import com.example.appreceitas.Class.Ingrediente;
 
 import java.util.ArrayList;
 
@@ -49,7 +48,7 @@ public class ComentarioDAO {
 
         String query = "SELECT c.id, c.idUsuario, c.idReceita, c.texto, u.nome " +
                 "FROM Comentario c, Usuario u " +
-                "WHERE "+COLUNA_IDRECEITA+"="+idReceita+" " +
+                "WHERE " + COLUNA_IDRECEITA + "=" + idReceita + " " +
                 "AND u.id = c.idUsuario";
 
 //        String query = "SELECT * FROM " + TABELA + " " +

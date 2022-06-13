@@ -1,15 +1,14 @@
 package com.example.appreceitas.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Usuario;
@@ -54,14 +53,10 @@ public class EditarUsuario extends AppCompatActivity {
         iniciarViewById();
         setUsuario();
 
-        if(radioAdmin.isSelected()){
-            Log.i("teste","SELECIONADO ADMIN");
-        }
-
         btnAtualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(verificarAtualizacao()) {
+                if (verificarAtualizacao()) {
                     realizarAtualizacao();
                 }
             }
@@ -75,7 +70,7 @@ public class EditarUsuario extends AppCompatActivity {
         });
     }
 
-    public void iniciarViewById(){
+    public void iniciarViewById() {
         textLogin = (EditText) findViewById(R.id.atualizarUsuarioEtLogin);
         textSenha = (EditText) findViewById(R.id.atualizarUsuarioEtSenha);
         textSenhaConfirmar = (EditText) findViewById(R.id.atualizarUsuarioEtSenhaConfirmar);
@@ -115,7 +110,7 @@ public class EditarUsuario extends AppCompatActivity {
         usuario.setNome(login);
         usuario.setSenha(senhaEncriptada);
 
-        if(radioAdmin.isChecked()) {
+        if (radioAdmin.isChecked()) {
             usuario.setTipo("Admin");
         } else {
             usuario.setTipo("Usuário");
@@ -131,7 +126,7 @@ public class EditarUsuario extends AppCompatActivity {
         fecharTela();
     }
 
-    public void fecharTela(){
+    public void fecharTela() {
         this.finish();
     }
 
@@ -147,9 +142,6 @@ public class EditarUsuario extends AppCompatActivity {
         boolean checkTamanhoSenhaConfirmar = (senhaConfirmar.length() >= 5);
         boolean checkLoginExistente = new UsuarioDAO(db).existeUsuario(login);
         boolean checkSenhasIguais = (senha.equals(senhaConfirmar));
-
-//        Log.i("Teste", ""+login.length());
-//        Log.i("Teste", ""+checkTamanhoLogin);
 
         if (checkTamanhoLogin) {
             erroUsuario.setVisibility(View.INVISIBLE);
@@ -175,15 +167,13 @@ public class EditarUsuario extends AppCompatActivity {
             erroSenhaConfirmar.setVisibility(View.VISIBLE);
         }
 
-        if(!login.equals(loginAntigo)){
+        if (!login.equals(loginAntigo)) {
             if (checkLoginExistente) {
                 erroUsuario2.setText("\n Usuário já existente. Tente outro usuário!");
                 erroUsuario2.setVisibility(View.VISIBLE);
-                Log.i("Teste", "JA EXISTE LOGIN!");
             } else {
                 erroUsuario2.setVisibility(View.INVISIBLE);
                 erroUsuario2.setText("");
-                Log.i("Teste", "Usuario disponivel!");
             }
         } else {
             erroUsuario2.setVisibility(View.INVISIBLE);
@@ -208,11 +198,10 @@ public class EditarUsuario extends AppCompatActivity {
         return retorno;
     }
 
-    public void setUsuario(){
+    public void setUsuario() {
         if (getIntent().hasExtra("loginUsuario")) {
             Bundle extras = getIntent().getExtras();
             loginAntigo = extras.getString("loginUsuario");
-            Log.i("teste", "Usuario antigo: "+loginAntigo);
         }
 
         Usuario usuario = new UsuarioDAO(db).buscarUsuario(loginAntigo);
@@ -220,7 +209,7 @@ public class EditarUsuario extends AppCompatActivity {
 //        textSenha.setText(usuario.getSenha());
 //        textSenhaConfirmar.setText(usuario.getSenha());
 
-        if(usuario.getTipo().equals("Admin")) {
+        if (usuario.getTipo().equals("Admin")) {
             radioGroup.check(radioAdmin.getId());
         } else {
             radioGroup.check(radioUsuario.getId());
@@ -247,7 +236,7 @@ public class EditarUsuario extends AppCompatActivity {
         return sb.toString();
     }
 
-    public static String encriptarSenha(String senha){
+    public static String encriptarSenha(String senha) {
         byte[] shaInBytes = digest(senha.getBytes(UTF_8));
         return bytesToHex(shaInBytes);
     }

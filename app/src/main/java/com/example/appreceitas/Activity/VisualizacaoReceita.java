@@ -63,7 +63,7 @@ public class VisualizacaoReceita extends AppCompatActivity {
         checkBoxFavorito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checkBoxFavorito.isChecked()) {
+                if (!checkBoxFavorito.isChecked()) {
                     checkBoxFavorito.setChecked(false);
                     removerFavorito();
                 } else {
@@ -118,7 +118,7 @@ public class VisualizacaoReceita extends AppCompatActivity {
             String nomeIngrediente = listaReceitas.get(i).getNome();
 
 
-            listaNomeReceitas.add(quantidade+" "+tipoQtd+" de " + nomeIngrediente);
+            listaNomeReceitas.add(quantidade + " " + tipoQtd + " de " + nomeIngrediente);
         }
 
         return listaNomeReceitas;
@@ -137,17 +137,17 @@ public class VisualizacaoReceita extends AppCompatActivity {
         this.receita = new ReceitaDAO(db).buscarReceitaId(this.idReceita);
     }
 
-    private void setReceitaFavorita(){
+    private void setReceitaFavorita() {
         boolean favorita = new ReceitaFavoritaDAO(db).isFavorite(this.idUsuario, this.idReceita);
 
-        if(favorita) {
+        if (favorita) {
             checkBoxFavorito.setChecked(true);
         } else {
             checkBoxFavorito.setChecked(false);
         }
     }
 
-    private void removerFavorito(){
+    private void removerFavorito() {
         new ReceitaFavoritaDAO(db).removerFavorito(this.idUsuario, this.idReceita);
     }
 

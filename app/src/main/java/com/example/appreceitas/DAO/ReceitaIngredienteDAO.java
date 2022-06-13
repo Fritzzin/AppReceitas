@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.appreceitas.Apoio.BancoDados;
-import com.example.appreceitas.Class.Ingrediente;
 import com.example.appreceitas.Class.Receita;
 
 import java.util.ArrayList;
@@ -17,11 +16,11 @@ public class ReceitaIngredienteDAO {
 
     private static final String TABELA = "Receita_Ingrediente";
 
-    public ReceitaIngredienteDAO(BancoDados bd){
+    public ReceitaIngredienteDAO(BancoDados bd) {
         this.bd = bd;
     }
 
-    public void salvar(int idIngrediente, int idReceita, String quantidade, String tipoQtd){
+    public void salvar(int idIngrediente, int idReceita, String quantidade, String tipoQtd) {
         try {
             SQLiteDatabase db = bd.getWritableDatabase();
 
@@ -36,7 +35,7 @@ public class ReceitaIngredienteDAO {
         }
     }
 
-    public ArrayList<Receita> resultadoPesquisaLista(ArrayList<String> lista){
+    public ArrayList<Receita> resultadoPesquisaLista(ArrayList<String> lista) {
         String query = "SELECT r.id, r.nome, r.idAutor, i.nome AS 'ingrediente' " +
                 "FROM Receita r, Ingrediente i, Receita_Ingrediente ri " +
                 "WHERE r.id = ri.idReceita " +
@@ -44,9 +43,9 @@ public class ReceitaIngredienteDAO {
                 "AND (";
 
         for (int i = 0; i < lista.size(); i++) {
-            query += " i.nome LIKE '%"+lista.get(i).toString()+"%' ";
+            query += " i.nome LIKE '%" + lista.get(i).toString() + "%' ";
 
-            if(!(i == (lista.size()-1))) {
+            if (!(i == (lista.size() - 1))) {
                 query += " OR ";
             }
         }
@@ -58,7 +57,7 @@ public class ReceitaIngredienteDAO {
         cursor.moveToFirst();
 
         ArrayList<Receita> listaReceitas = new ArrayList<Receita>();
-        try{
+        try {
             do {
                 int codigo = cursor.getInt(0);
                 String nomeReceita = cursor.getString(1);
@@ -66,7 +65,7 @@ public class ReceitaIngredienteDAO {
                 Receita receita = new Receita(codigo, nomeReceita, idAutor);
                 listaReceitas.add(receita);
             } while (cursor.moveToNext());
-        }catch (CursorIndexOutOfBoundsException c) {
+        } catch (CursorIndexOutOfBoundsException c) {
         }
 
 //        for (int i = 0; i < listaReceitas.size(); i++) {
@@ -87,9 +86,9 @@ public class ReceitaIngredienteDAO {
                 "AND (";
 
         for (int i = 0; i < lista.size(); i++) {
-            query += " i.nome LIKE '%"+lista.get(i).toString()+"%' ";
+            query += " i.nome LIKE '%" + lista.get(i).toString() + "%' ";
 
-            if(!(i == (lista.size()-1))) {
+            if (!(i == (lista.size() - 1))) {
                 query += " OR ";
             }
         }
@@ -100,12 +99,12 @@ public class ReceitaIngredienteDAO {
         cursor.moveToFirst();
 
         ArrayList<String> listaReceitas = new ArrayList<String>();
-        try{
+        try {
             do {
                 String nomeReceita = cursor.getString(1);
                 listaReceitas.add(nomeReceita);
             } while (cursor.moveToNext());
-        }catch (CursorIndexOutOfBoundsException c) {
+        } catch (CursorIndexOutOfBoundsException c) {
         }
         return listaReceitas;
     }

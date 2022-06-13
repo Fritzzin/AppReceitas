@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Ingrediente;
-import com.example.appreceitas.Class.Receita;
 
 import java.util.ArrayList;
 
@@ -94,12 +93,12 @@ public class IngredienteDAO {
         ArrayList<Ingrediente> lista = new ArrayList<>();
 
         SQLiteDatabase db = bd.getReadableDatabase();
-        String query = "SELECT * FROM " + TABELA +" " +
-                "WHERE nome LIKE '%"+nomeIngrediente+"%';";
+        String query = "SELECT * FROM " + TABELA + " " +
+                "WHERE nome LIKE '%" + nomeIngrediente + "%';";
 
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        try{
+        try {
             do {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
@@ -108,7 +107,7 @@ public class IngredienteDAO {
                 Ingrediente ingrediente = new Ingrediente(codigo, nome, tipo);
                 lista.add(ingrediente);
             } while (cursor.moveToNext());
-        }catch (CursorIndexOutOfBoundsException c) {
+        } catch (CursorIndexOutOfBoundsException c) {
 
         }
         return lista;
@@ -119,13 +118,13 @@ public class IngredienteDAO {
 
         SQLiteDatabase db = bd.getReadableDatabase();
         String query = "SELECT i.id, i.nome, i.tipo, ri.quantidade, ri.tipoQtd FROM Ingrediente i, Receita r, Receita_Ingrediente ri " +
-                "WHERE r.id = '"+idReceita+"'" +
+                "WHERE r.id = '" + idReceita + "'" +
                 "AND r.id = ri.idReceita " +
                 "AND i.id = ri.idIngrediente;";
 
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        try{
+        try {
             do {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
@@ -136,7 +135,7 @@ public class IngredienteDAO {
                 Ingrediente ingrediente = new Ingrediente(codigo, nome, tipo, quantidade, tipoQtd);
                 lista.add(ingrediente);
             } while (cursor.moveToNext());
-        }catch (CursorIndexOutOfBoundsException c) {
+        } catch (CursorIndexOutOfBoundsException c) {
 
         }
         return lista;

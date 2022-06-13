@@ -33,16 +33,10 @@ public class ListarReceitasTodas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_receitas_todas);
         iniciarFindViewById();
-
+        setExtras();
         ArrayList<Receita> listaReceitas = new ReceitaDAO(db).listarTodos();
         ArrayList<String> listaNomes = alimentarLista();
         setArrayAdapter(listaNomes);
-
-        if (getIntent().hasExtra("idUsuario")) {
-            Bundle extras = getIntent().getExtras();
-            idUsuario = extras.getInt("idUsuario");
-        }
-
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +58,13 @@ public class ListarReceitasTodas extends AppCompatActivity {
                 abrirReceita(listaReceitas.get(i));
             }
         });
+    }
 
-
+    private void setExtras() {
+        if (getIntent().hasExtra("idUsuario")) {
+            Bundle extras = getIntent().getExtras();
+            idUsuario = extras.getInt("idUsuario");
+        }
     }
 
     private void iniciarFindViewById() {
@@ -117,14 +116,13 @@ public class ListarReceitasTodas extends AppCompatActivity {
         }
     }
 
-    public void abrirReceita(Receita receita){
+    public void abrirReceita(Receita receita) {
         Intent myIntent = new Intent(this, VisualizacaoReceita.class);
 
         myIntent.putExtra("idReceita", receita.getId());
         myIntent.putExtra("nomeReceita", receita.getNome());
         myIntent.putExtra("autorReceita", receita.getIdAutor());
         myIntent.putExtra("idUsuario", idUsuario);
-
 
         this.startActivity(myIntent);
     }

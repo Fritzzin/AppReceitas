@@ -2,7 +2,6 @@ package com.example.appreceitas.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,13 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appreceitas.Apoio.BancoDados;
-import com.example.appreceitas.Class.Ingrediente;
-import com.example.appreceitas.Class.Receita;
 import com.example.appreceitas.Class.Usuario;
-import com.example.appreceitas.DAO.IngredienteDAO;
-import com.example.appreceitas.DAO.ReceitaDAO;
-import com.example.appreceitas.DAO.ReceitaFavoritaDAO;
-import com.example.appreceitas.DAO.ReceitaIngredienteDAO;
 import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;
 
@@ -25,7 +18,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         iniciarFindById();
         limparTexto();
 
-//        new ReceitaIngredienteDAO(db).salvar(2, 1, "2", "unidades");
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void realizarLogin(){
+    public void realizarLogin() {
         String login = textLogin.getText().toString();
         String senha = textSenha.getText().toString();
         String senhaEncriptada = encriptarSenha(senha);
@@ -77,15 +67,11 @@ public class MainActivity extends AppCompatActivity {
         Usuario usuarioBanco = new UsuarioDAO(db).buscarUsuario(login);
 
         if (login.equals(usuarioBanco.getNome()) && senhaEncriptada.equals(usuarioBanco.getSenha())) {
-//            Log.i("Teste Login", "Logado com sucesso!");
-
             tvErroLogin.setText("");
             tvErroLogin.setVisibility(View.INVISIBLE);
 
             abrirDashboard(usuarioBanco);
         } else {
-//            Log.i("Teste Login", "Erro ao executar login!");
-
             tvErroLogin.setText("Erro ao realizar login! Verifique o usuário e senha.");
             tvErroLogin.setVisibility(View.VISIBLE);
         }
@@ -139,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         btnCadastroUsuario = (Button) findViewById(R.id.btnCadastro);
     }
 
-    public void abrirDashboard(Usuario usuario){
+    public void abrirDashboard(Usuario usuario) {
         Intent myIntent = new Intent(this, DashboardUsuario.class);
         myIntent.putExtra("idUsuario", usuario.getId());
         myIntent.putExtra("nome", usuario.getNome());
@@ -150,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
-    public void abrirCadastroUsuario(){
+    public void abrirCadastroUsuario() {
         Intent myIntent = new Intent(this, CriarUsuario.class);
 
         limparTexto();
@@ -158,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
-    public void limparTexto(){
+    public void limparTexto() {
         textLogin.setText("");
         textSenha.setText("");
     }
@@ -182,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         return sb.toString();
     }
 
-    public static String encriptarSenha(String senha){
+    public static String encriptarSenha(String senha) {
         byte[] shaInBytes = digest(senha.getBytes(UTF_8));
         return bytesToHex(shaInBytes);
     }

@@ -105,7 +105,7 @@ public class CriarUsuario extends AppCompatActivity {
         fecharTela();
     }
 
-    public void fecharTela(){
+    public void fecharTela() {
         this.finish();
     }
 
@@ -121,9 +121,6 @@ public class CriarUsuario extends AppCompatActivity {
         boolean checkTamanhoSenhaConfirmar = (senhaConfirmar.length() >= 5);
         boolean checkLoginExistente = new UsuarioDAO(db).existeUsuario(login);
         boolean checkSenhasIguais = (senha.equals(senhaConfirmar));
-
-        Log.i("Teste", ""+login.length());
-        Log.i("Teste", ""+checkTamanhoLogin);
 
         if (checkTamanhoLogin) {
             erroUsuario.setVisibility(View.INVISIBLE);
@@ -152,11 +149,9 @@ public class CriarUsuario extends AppCompatActivity {
         if (checkLoginExistente) {
             erroUsuario2.setText("\n Usuário já existente. Tente outro usuário!");
             erroUsuario2.setVisibility(View.VISIBLE);
-            Log.i("Teste", "JA EXISTE LOGIN!");
         } else {
             erroUsuario2.setVisibility(View.INVISIBLE);
             erroUsuario2.setText("");
-            Log.i("Teste", "Usuario disponivel!");
         }
 
         if (checkSenhasIguais) {
@@ -184,7 +179,7 @@ public class CriarUsuario extends AppCompatActivity {
         return sb.toString();
     }
 
-    public static String encriptarSenha(String senha){
+    public static String encriptarSenha(String senha) {
         byte[] shaInBytes = digest(senha.getBytes(UTF_8));
         return bytesToHex(shaInBytes);
     }

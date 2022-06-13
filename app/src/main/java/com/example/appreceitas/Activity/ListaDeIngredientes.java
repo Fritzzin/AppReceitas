@@ -1,25 +1,19 @@
 package com.example.appreceitas.Activity;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.service.controls.actions.FloatAction;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Ingrediente;
@@ -136,7 +130,6 @@ public class ListaDeIngredientes extends AppCompatActivity {
     private void abrirListaIngredientes() {
         Intent myIntent = new Intent(this, ListarIngredientesTodos.class);
         activityLauncher.launch(myIntent);
-//        this.startActivity(myIntent);
     }
 
     public void adicionarLista(String nome, int id) {
@@ -174,10 +167,6 @@ public class ListaDeIngredientes extends AppCompatActivity {
             }
             myIntent.putExtra("qtd", lista.size());
             this.startActivity(myIntent);
-
-            for (int i = 0; i < listaId.size(); i++) {
-                Log.i("teste", "ID: " + listaId.get(i).getId() + "      NOME: " + listaId.get(i).getNome());
-            }
         }
     }
 }

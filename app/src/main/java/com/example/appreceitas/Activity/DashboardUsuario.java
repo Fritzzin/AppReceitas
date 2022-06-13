@@ -2,7 +2,6 @@ package com.example.appreceitas.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,12 +12,12 @@ import com.example.appreceitas.R;
 
 public class DashboardUsuario extends AppCompatActivity {
 
-    TextView tvTeste;
     TextView tvNomeUsuario;
     Button btnBuscarNome;
     Button btnBuscarLista;
     Button btnVoltar;
-    Button btnListarUsuarios;
+    Button btnPainelAdmin;
+    Button btnFavorito;
 
     int idUsuario;
     String nomeUsuario;
@@ -29,7 +28,7 @@ public class DashboardUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_usuario);
         iniciarFindById();
-        setUsuario();
+        setExtras();
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,10 +37,10 @@ public class DashboardUsuario extends AppCompatActivity {
             }
         });
 
-        btnListarUsuarios.setOnClickListener(new View.OnClickListener() {
+        btnPainelAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirListaUsuarios();
+                abrirPainelAdministrativo();
             }
         });
 
@@ -59,15 +58,21 @@ public class DashboardUsuario extends AppCompatActivity {
             }
         });
 
+        btnFavorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirFavoritos();
+            }
+        });
     }
 
     public void iniciarFindById() {
-        tvTeste = (TextView) findViewById(R.id.tvTeste);
         tvNomeUsuario = (TextView) findViewById(R.id.tvNomeUsuario);
         btnBuscarNome = (Button) findViewById(R.id.btnBuscarNome);
         btnBuscarLista = (Button) findViewById(R.id.btnBuscarLista);
         btnVoltar = (Button) findViewById(R.id.btnVoltar);
-        btnListarUsuarios = (Button) findViewById(R.id.btnEditarUsuarios);
+        btnPainelAdmin = (Button) findViewById(R.id.btnPainelAdmin);
+        btnFavorito = (Button) findViewById(R.id.dashboardBtnFavoritos);
     }
 
     public void abrirBuscarPorLista() {
@@ -76,20 +81,24 @@ public class DashboardUsuario extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
-    public void abrirListaUsuarios() {
-        Intent myIntent = new Intent(this, ListarUsuarios.class);
+    public void abrirPainelAdministrativo() {
+        Intent myIntent = new Intent(this, PainelAdmin.class);
         this.startActivity(myIntent);
     }
 
     public void abrirListaReceitas() {
         Intent myIntent = new Intent(this, ListarReceitasTodas.class);
-
         myIntent.putExtra("idUsuario", idUsuario);
-
         this.startActivity(myIntent);
     }
 
-    public void setUsuario() {
+    public void abrirFavoritos() {
+        Intent myIntent = new Intent(this, ListarFavoritos.class);
+        myIntent.putExtra("idUsuario", idUsuario);
+        this.startActivity(myIntent);
+    }
+
+    public void setExtras() {
         if (getIntent().hasExtra("idUsuario")) {
             Bundle extras = getIntent().getExtras();
             this.idUsuario = extras.getInt("idUsuario");
@@ -100,14 +109,10 @@ public class DashboardUsuario extends AppCompatActivity {
         tvNomeUsuario.append(" " + nomeUsuario);
 
         if (tipoUsuario.equals("Admin")) {
-            tvTeste.setVisibility(View.VISIBLE);
+            btnPainelAdmin.setVisibility(View.VISIBLE);
         } else {
-            tvTeste.setVisibility(View.INVISIBLE);
+            btnPainelAdmin.setVisibility(View.INVISIBLE);
         }
-
-//        Log.i("Teste nova Activity", "" + idUsuario);
-//        Log.i("Teste nova Activity", "" + nomeUsuario);
-//        Log.i("Teste nova Activity", "" + tipoUsuario);
     }
 
     public void retorno() {

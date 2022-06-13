@@ -1,15 +1,14 @@
 package com.example.appreceitas.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Comentario;
@@ -93,15 +92,15 @@ public class VisualizarComentario extends AppCompatActivity {
         for (int i = 0; i < listaComentariosBanco.size(); i++) {
             String texto = listaComentariosBanco.get(i).getTexto();
             String autor = listaComentariosBanco.get(i).getNomeUsuario();
-            listaComentariosString.add(autor+": "+texto);
+            listaComentariosString.add(autor + ": " + texto);
         }
 
         return listaComentariosString;
     }
 
-    private void enviarComentario(){
+    private void enviarComentario() {
         String texto = textoComentario.getText().toString();
-        if(!texto.trim().equals("")){
+        if (!texto.trim().equals("")) {
             Comentario comentario = new Comentario(idUsuario, idReceita, texto);
             new ComentarioDAO(db).salvar(comentario);
 
