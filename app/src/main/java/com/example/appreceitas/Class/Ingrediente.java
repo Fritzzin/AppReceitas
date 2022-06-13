@@ -11,14 +11,6 @@ public class Ingrediente {
     private String quantidade;
     private String tipoQtd;
 
-    public Ingrediente() {
-        this.id = 0;
-        this.nome = "";
-        this.tipo = "";
-        this.quantidade = "";
-        this.tipoQtd = "";
-    }
-
     public Ingrediente(int id, String nome) {
         this.id = id;
         this.nome = nome;

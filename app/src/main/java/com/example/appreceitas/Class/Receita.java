@@ -10,7 +10,23 @@ public class Receita {
     private int id;
     private String nome;
     private int idAutor;
+    private String modoPreparo;
     private ArrayList<Ingrediente> ingredientes;
+
+    public Receita(int id, String nome, int idAutor, String modoPreparo) {
+        this.id = id;
+        this.nome = nome;
+        this.idAutor = idAutor;
+        this.modoPreparo = modoPreparo;
+    }
+
+    public Receita(int id, String nome, int idAutor, String modoPreparo, ArrayList<Ingrediente> ingredientes) {
+        this.id = id;
+        this.nome = nome;
+        this.idAutor = idAutor;
+        this.modoPreparo = modoPreparo;
+        this.ingredientes = ingredientes;
+    }
 
     public Receita(int id, String nome, int idUsuario, ArrayList<Ingrediente> ingredientes) {
         this.id = id;
@@ -41,6 +57,15 @@ public class Receita {
         this.idAutor = 0;
         this.ingredientes = null;
     }
+
+    public String getModoPreparo() {
+        return modoPreparo;
+    }
+
+    public void setModoPreparo(String modoPreparo) {
+        this.modoPreparo = modoPreparo;
+    }
+
 
     public String getNome() {
         return nome;

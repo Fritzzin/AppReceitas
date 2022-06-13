@@ -17,6 +17,7 @@ public class ReceitaDAO {
     private static final String COLUNA_CODIGO = "id";
     private static final String COLUNA_NOME = "nome";
     private static final String COLUNA_IDAUTOR = "idAutor";
+    private static final String COLUNA_MODOPREPARO = "modoPreparo";
 
     public ReceitaDAO(BancoDados bd) {
         this.bd = bd;
@@ -29,6 +30,7 @@ public class ReceitaDAO {
             ContentValues values = new ContentValues();
             values.put(COLUNA_NOME, receita.getNome());
             values.put(COLUNA_IDAUTOR, receita.getIdAutor());
+            values.put(COLUNA_MODOPREPARO, receita.getModoPreparo());
 
             db.insert(TABELA, null, values);
             return true;
@@ -60,6 +62,7 @@ public class ReceitaDAO {
             ContentValues values = new ContentValues();
             values.put(COLUNA_NOME, receita.getNome());
             values.put(COLUNA_IDAUTOR, receita.getIdAutor());
+            values.put(COLUNA_MODOPREPARO, receita.getModoPreparo());
             db.update(TABELA, values, where, null);
 
             return true;
@@ -80,8 +83,9 @@ public class ReceitaDAO {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
                 int idAutor = cursor.getInt(2);
+                String modoPreparo = cursor.getString(3);
 
-                Receita receita = new Receita(codigo, nome, idAutor);
+                Receita receita = new Receita(codigo, nome, idAutor, modoPreparo);
                 lista.add(receita);
             } while (cursor.moveToNext());
         } catch (CursorIndexOutOfBoundsException c) {
@@ -103,8 +107,9 @@ public class ReceitaDAO {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
                 int idAutor = cursor.getInt(2);
+                String modoPreparo = cursor.getString(3);
 
-                Receita receita = new Receita(codigo, nome, idAutor);
+                Receita receita = new Receita(codigo, nome, idAutor, modoPreparo);
                 lista.add(receita);
             } while (cursor.moveToNext());
         } catch (CursorIndexOutOfBoundsException c) {
@@ -127,10 +132,12 @@ public class ReceitaDAO {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
                 int idAutor = cursor.getInt(2);
+                String modoPreparo = cursor.getString(3);
 
                 receita.setId(id);
                 receita.setNome(nome);
                 receita.setIdAutor(idAutor);
+                receita.setModoPreparo(modoPreparo);
             } while (cursor.moveToNext());
         } catch (CursorIndexOutOfBoundsException c) {
 
@@ -142,7 +149,7 @@ public class ReceitaDAO {
         ArrayList<Receita> lista = new ArrayList<Receita>();
 
         SQLiteDatabase db = bd.getReadableDatabase();
-        String query = "SELECT r.id, r.nome, r.idAutor " +
+        String query = "SELECT r.id, r.nome, r.idAutor, r.modoPreparo " +
                 "FROM Receita r, Receita_Favorita rf " +
                 "WHERE r.id = rf.idReceita " +
                 "AND rf.idUsuario = " + idUsuario;
@@ -153,11 +160,13 @@ public class ReceitaDAO {
                 int codigo = cursor.getInt(0);
                 String nome = cursor.getString(1);
                 int codigoAutor = cursor.getInt(2);
+                String modoPreparo = cursor.getString(3);
 
                 Receita receita = new Receita();
                 receita.setId(codigo);
                 receita.setNome(nome);
                 receita.setIdAutor(codigoAutor);
+                receita.setModoPreparo(modoPreparo);
 
                 lista.add(receita);
             } while (cursor.moveToNext());
@@ -165,6 +174,25 @@ public class ReceitaDAO {
 
         }
         return lista;
+    }
 
+    public String getModoPreparo(int idReceita) {
+        String modoPreparo = "";
+
+        SQLiteDatabase db = bd.getReadableDatabase();
+        String query = "SELECT modoPreparo " +
+                "FROM " + TABELA + " " +
+                "WHERE id=" + idReceita;
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        try{
+            do {
+                modoPreparo = cursor.getString(0);
+            } while (cursor.moveToNext());
+        } catch (CursorIndexOutOfBoundsException c){
+            c.printStackTrace();
+        }
+
+        return modoPreparo;
     }
 }

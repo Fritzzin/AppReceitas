@@ -6,6 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 public class BancoDados extends SQLiteOpenHelper {
@@ -29,6 +33,7 @@ public class BancoDados extends SQLiteOpenHelper {
             "id INTEGER PRIMARY KEY, " +
             "nome TEXT NOT NULL, " +
             "idAutor INTEGER NOT NULL, " +
+            "modoPreparo TEXT NOT NULL, " +
             "FOREIGN KEY (idAutor) REFERENCES Usuario(id) " +
             ");";
 
@@ -62,7 +67,7 @@ public class BancoDados extends SQLiteOpenHelper {
 
     private static final String INSERT_USUARIO = "INSERT INTO Usuario(nome, senha, tipo) VALUES ( " +
             "'Augusto', " +
-            "'senhaTeste', " +
+            "'da7a12cc87257e61ee52fcf7283aded557fb92e293c24cb127f1858b69d97b2b', " +
             "'Admin' " +
             ");";
 
@@ -71,9 +76,13 @@ public class BancoDados extends SQLiteOpenHelper {
             "'Animal' " +
             ");";
 
-    private static final String INSERT_RECEITA = "INSERT INTO Receita (nome, idAutor) VALUES ( " +
+    private static final String INSERT_RECEITA = "INSERT INTO Receita (nome, idAutor, modoPreparo) VALUES ( " +
             "'Ovos Mexidos', " +
-            "1 " +
+            "1 ," +
+            "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porttitor turpis vitae " +
+            "congue vehicula. Ut nec dolor non massa varius sollicitudin at eget libero. Aenean " +
+            "porta lacinia tortor ac finibus. Fusce tempor, sapien semper efficitur tristique, " +
+            "diam sapien blandit dui, at facilisis sem nulla vitae leo.'" +
             ");";
 
     private static final String INSERT_COMENTARIO = "INSERT INTO Comentario (idUsuario, idReceita, texto) VALUES ( " +
@@ -95,7 +104,7 @@ public class BancoDados extends SQLiteOpenHelper {
             "'TRUE' " +
             ");";
 
-    public BancoDados(@Nullable Context context){
+    public BancoDados(@Nullable Context context) {
         super(context, BANCO_LOCATION, null, VERSAO_BANCO);
     }
 
@@ -121,7 +130,7 @@ public class BancoDados extends SQLiteOpenHelper {
 
     }
 
-    public void resetaDB(){
+    public void resetaDB() {
         SQLiteDatabase db = getWritableDatabase();
         onOpen(db);
         db.execSQL("DELETE FROM Usuario");

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class VisualizacaoReceita extends AppCompatActivity {
     TextView textoIngredientes;
     Button btnVoltar;
     Button btnComentarios;
+    Button btnModoPreparo;
     ImageView imagem;
     ListView listaIngredientes;
     CheckBox checkBoxFavorito;
@@ -80,6 +82,13 @@ public class VisualizacaoReceita extends AppCompatActivity {
             }
         });
 
+        btnModoPreparo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirModoPreparo();
+            }
+        });
+
     }
 
     private void iniciarFindViewById() {
@@ -88,6 +97,7 @@ public class VisualizacaoReceita extends AppCompatActivity {
         textoIngredientes = (TextView) findViewById(R.id.receitaEtIngredientes);
         btnVoltar = (Button) findViewById(R.id.receitaBtnVoltar);
         btnComentarios = (Button) findViewById(R.id.receitaBtnComentarios);
+        btnModoPreparo = (Button) findViewById(R.id.receitaBtnModoPreparo);
         imagem = (ImageView) findViewById(R.id.receitaImage);
         listaIngredientes = (ListView) findViewById(R.id.receitaListaIngredientes);
         checkBoxFavorito = (CheckBox) findViewById(R.id.receitaCheckBoxFavorito);
@@ -95,7 +105,6 @@ public class VisualizacaoReceita extends AppCompatActivity {
         textoTitulo.setText(receita.getNome());
         textoAutor.setText(autor.getNome());
         checkBoxFavorito.setChecked(false);
-
     }
 
     private void setArrayAdapter(ArrayList<String> lista) {
@@ -108,6 +117,7 @@ public class VisualizacaoReceita extends AppCompatActivity {
         listaIngredientes.setAdapter(arrayAdapter);
     }
 
+
     private ArrayList<String> alimentarLista() {
         ArrayList<Ingrediente> listaReceitas = new IngredienteDAO(db).buscarIngredientesReceita(this.idReceita);
         ArrayList<String> listaNomeReceitas = new ArrayList<String>();
@@ -116,7 +126,6 @@ public class VisualizacaoReceita extends AppCompatActivity {
             String quantidade = listaReceitas.get(i).getQuantidade();
             String tipoQtd = listaReceitas.get(i).getTipoQtd();
             String nomeIngrediente = listaReceitas.get(i).getNome();
-
 
             listaNomeReceitas.add(quantidade + " " + tipoQtd + " de " + nomeIngrediente);
         }
@@ -161,10 +170,14 @@ public class VisualizacaoReceita extends AppCompatActivity {
 
     private void abrirComentarios() {
         Intent myIntent = new Intent(this, VisualizarComentario.class);
-
         myIntent.putExtra("idUsuario", idUsuario);
         myIntent.putExtra("idReceita", idReceita);
+        this.startActivity(myIntent);
+    }
 
+    private void abrirModoPreparo() {
+        Intent myIntent = new Intent(this, VisualizarModoPreparo.class);
+        myIntent.putExtra("idReceita", idReceita);
         this.startActivity(myIntent);
     }
 }

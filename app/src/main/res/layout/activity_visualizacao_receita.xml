@@ -23,8 +23,8 @@
 
     <ImageView
         android:id="@+id/receitaImage"
-        android:layout_width="179dp"
-        android:layout_height="199dp"
+        android:layout_width="154dp"
+        android:layout_height="149dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -63,10 +63,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/receitaBtnVoltar"
+        app:layout_constraintBottom_toTopOf="@+id/receitaBtnModoPreparo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/receitaEtIngredientes" />
 
@@ -105,4 +103,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toEndOf="@+id/receitaBtnVoltar" />
+
+    <Button
+        android:id="@+id/receitaBtnModoPreparo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/receitaBtnModoPreparo"
+        app:layout_constraintBottom_toTopOf="@+id/receitaBtnComentarios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

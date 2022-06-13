@@ -15,7 +15,6 @@
     <string name="dashboard_btnVoltar">Voltar</string>
     <string name="dashboard_btnEditarUsuarios">Painel Administrativo</string>
     <string name="dashboard_btnFavoritos">Receitas Favoritas</string>
-
     <!--    Tela Cadastro -->
     <string name="cadastro_textoTitulo">Criação de Usuário</string>
     <string name="cadastro_textoUsuario">Usuário</string>
@@ -57,6 +56,7 @@
     <string name="ReceitaBtnVoltar">Voltar</string>
     <string name="ReceitaCheckBoxFavorito">Favoritar</string>
     <string name="ReceitaBtnComentarios">Comentários</string>
+    <string name="receitaBtnModoPreparo">Modo de Preparo</string>
     <!--    Tela Comentarios-->
     <string name="ComentarioEtTitulo">Comentários</string>
     <string name="ComentarioBtnVoltar">Voltar</string>
@@ -73,4 +73,7 @@
     <string name="painelAdminTvTitulo">Painel Administrativo</string>
     <string name="painelAdminBtnVoltar">Voltar</string>
     <string name="painelAdminBtnEditarUsuarios">Editar Usuários</string>
+<!--    Modo Preparo-->
+    <string name="modoPreparoTitulo">Modo de Preparo</string>
+    <string name="modoPreparoBtnVoltar">Voltar</string>
 </resources>
