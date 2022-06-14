@@ -127,7 +127,11 @@ public class VisualizacaoReceita extends AppCompatActivity {
             String tipoQtd = listaReceitas.get(i).getTipoQtd();
             String nomeIngrediente = listaReceitas.get(i).getNome();
 
-            listaNomeReceitas.add(quantidade + " " + tipoQtd + " de " + nomeIngrediente);
+            if (quantidade.equals("")) {
+                listaNomeReceitas.add(tipoQtd + " " + nomeIngrediente);
+            } else {
+                listaNomeReceitas.add(quantidade + " " + tipoQtd + " de " + nomeIngrediente);
+            }
         }
 
         return listaNomeReceitas;
