@@ -114,12 +114,12 @@ public class ListarIngredientesTodos extends AppCompatActivity {
         this.finish();
     }
 
-    private void adicionarItem(String nome, int i) {
+    private void adicionarItem(String nome, int id) {
         Intent intent = new Intent();
-        String id = String.valueOf(listaIngredientes.get(i).getId());
+        String idText= String.valueOf(id);
 
         intent.putExtra("nome", nome);
-        intent.putExtra("idIngrediente", id);
+        intent.putExtra("idIngrediente", idText);
 
         setResult(78, intent);
 

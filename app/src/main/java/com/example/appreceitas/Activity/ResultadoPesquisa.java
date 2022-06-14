@@ -105,22 +105,51 @@ public class ResultadoPesquisa extends AppCompatActivity {
                 listaTeste.add(buscarReceitas.get(i).getNome());
                 listaReceitas.add(buscarReceitas.get(i));
 
-                String teste = "";
+                String teste = "Possui: ";
                 ArrayList<String> listaBanco = new ReceitaIngredienteDAO(db).listaIngredientes(buscarReceitas.get(i).getId());
+                ArrayList<String> listaContendo = new ArrayList<>();
+                ArrayList<String> listaFaltante = new ReceitaIngredienteDAO(db).listaIngredientes(buscarReceitas.get(i).getId());
                 int tamanhoBanco = listaBanco.size();
                 for (int j = 0; j < listaIngredientes.size(); j++) {
 
-                    if (listaBanco.contains(listaIngredientes.get(j).trim())) {
-                        Log.i("teste", "ingrediente:" + listaIngredientes.get(j));
-                        teste += listaIngredientes.get(j) + " | ";
-                        tamanhoBanco--;
+                    for (String s : listaBanco) {
+                        if (s.equals(listaIngredientes.get(j))){
+                            listaContendo.add(listaIngredientes.get(j).trim());
+                            listaFaltante.remove(listaIngredientes.get(j).trim());
+                            tamanhoBanco--;
+                        }
+                    }
+//                    if (listaBanco.contains(listaIngredientes.get(j).trim())) {
+//                        listaContendo.add(listaIngredientes.get(j).trim());
+//                        listaFaltante.remove(listaIngredientes.get(j).trim());
+//                        tamanhoBanco--;
+//                    }
+                }
+
+                for (int j = 0; j < listaContendo.size(); j++) {
+                    if (listaContendo.size() != 1) {
+                        teste += listaContendo.get(j);
+                        if (j + 1 != listaContendo.size()) {
+                            teste += " | ";
+                        }
+                    } else {
+                        teste += listaContendo.get(j);
                     }
                 }
 
-                if (tamanhoBanco > 0) {
-                    teste += "Faltam " + tamanhoBanco + " ingredientes";
-                }
 
+                if (tamanhoBanco > 0) {
+                    teste += "\n\nNão Possui: ";
+
+                    for (int j = 0; j < listaFaltante.size(); j++) {
+                        Log.i("teste", "Faltante:" + listaFaltante.get(j));
+                        teste += listaFaltante.get(j);
+
+                        if (j + 1 != listaFaltante.size()) {
+                            teste += " | ";
+                        }
+                    }
+                }
                 lista.put(buscarReceitas.get(i).getNome(), teste);
             }
         }
