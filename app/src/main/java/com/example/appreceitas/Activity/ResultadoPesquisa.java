@@ -2,6 +2,7 @@ package com.example.appreceitas.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -103,7 +104,24 @@ public class ResultadoPesquisa extends AppCompatActivity {
             if (!listaTeste.contains(buscarReceitas.get(i).getNome())) {
                 listaTeste.add(buscarReceitas.get(i).getNome());
                 listaReceitas.add(buscarReceitas.get(i));
-                lista.put(buscarReceitas.get(i).getNome(), "");
+
+                String teste = "";
+                ArrayList<String> listaBanco = new ReceitaIngredienteDAO(db).listaIngredientes(buscarReceitas.get(i).getId());
+                int tamanhoBanco = listaBanco.size();
+                for (int j = 0; j < listaIngredientes.size(); j++) {
+
+                    if (listaBanco.contains(listaIngredientes.get(j).trim())) {
+                        Log.i("teste", "ingrediente:" + listaIngredientes.get(j));
+                        teste += listaIngredientes.get(j) + " | ";
+                        tamanhoBanco--;
+                    }
+                }
+
+                if (tamanhoBanco > 0) {
+                    teste += "Faltam " + tamanhoBanco + " ingredientes";
+                }
+
+                lista.put(buscarReceitas.get(i).getNome(), teste);
             }
         }
 

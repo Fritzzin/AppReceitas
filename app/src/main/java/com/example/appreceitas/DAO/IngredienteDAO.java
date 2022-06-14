@@ -71,7 +71,7 @@ public class IngredienteDAO {
     public ArrayList<Ingrediente> listarTodos() {
         ArrayList<Ingrediente> lista = new ArrayList<>();
 
-        SQLiteDatabase db = bd.getReadableDatabase();
+        SQLiteDatabase db = this.bd.getReadableDatabase();
         String query = "SELECT * FROM " + TABELA;
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();

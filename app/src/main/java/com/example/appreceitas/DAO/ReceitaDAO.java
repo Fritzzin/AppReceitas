@@ -176,6 +176,33 @@ public class ReceitaDAO {
         return lista;
     }
 
+    public Receita buscarReceitaString(String texto) {
+        SQLiteDatabase db = bd.getReadableDatabase();
+        String query = "SELECT * " +
+                "FROM " + TABELA + " " +
+                "WHERE nome LIKE '" + texto + "';";
+
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        Receita receita = new Receita();
+        try {
+            do {
+                int codigo = cursor.getInt(0);
+                String nome = cursor.getString(1);
+                int codigoAutor = cursor.getInt(2);
+                String modoPreparo = cursor.getString(3);
+
+                receita.setId(codigo);
+                receita.setNome(nome);
+                receita.setIdAutor(codigoAutor);
+                receita.setModoPreparo(modoPreparo);
+            } while (cursor.moveToNext());
+        } catch (CursorIndexOutOfBoundsException c) {
+            c.printStackTrace();
+        }
+        return receita;
+    }
+
     public String getModoPreparo(int idReceita) {
         String modoPreparo = "";
 
@@ -185,11 +212,11 @@ public class ReceitaDAO {
                 "WHERE id=" + idReceita;
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        try{
+        try {
             do {
                 modoPreparo = cursor.getString(0);
             } while (cursor.moveToNext());
-        } catch (CursorIndexOutOfBoundsException c){
+        } catch (CursorIndexOutOfBoundsException c) {
             c.printStackTrace();
         }
 

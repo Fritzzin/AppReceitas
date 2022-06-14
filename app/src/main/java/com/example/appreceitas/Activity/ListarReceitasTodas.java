@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.example.appreceitas.Apoio.BancoDados;
 import com.example.appreceitas.Class.Receita;
 import com.example.appreceitas.DAO.ReceitaDAO;
+import com.example.appreceitas.DAO.UsuarioDAO;
 import com.example.appreceitas.R;
 
 import java.util.ArrayList;
@@ -55,7 +56,9 @@ public class ListarReceitasTodas extends AppCompatActivity {
         listViewReceitas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                abrirReceita(listaReceitas.get(i));
+                String nome = listViewReceitas.getAdapter().getItem(i).toString();
+                Receita rct = new ReceitaDAO(db).buscarReceitaString(nome);
+                abrirReceita(rct);
             }
         });
     }
